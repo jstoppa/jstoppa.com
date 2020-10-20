@@ -1,0 +1,73 @@
+baseURL: "jstoppa.github.io"
+title: Juan Stoppa
+paginate: 8
+theme: hugo-PaperMod
+enableInlineShortcodes: true
+
+params:
+  env: production
+  description: "Juan Stoppa's personal blog"
+  author: Juan Stoppa
+  ShowReadingTime: true
+  defaultTheme: auto
+  ShowShareButtons: true
+  profileMode:
+    enabled: false
+    title: PaperMod
+    imageUrl: "#"
+    imageTitle: my image
+    buttons:
+      - name: Archives
+        url: archives
+      - name: Tags
+        url: tags
+
+  homeInfoParams:
+    Title: "Hi, I'm Juan \U0001F44B"
+    Content: I'm a software engineer living in London and working in Fintech. 
+
+  socialIcons:
+    - name: twitter
+      url: "https://twitter.com/juanstoppa"
+    - name: linkedin
+      url: "https://uk.linkedin.com/in/jstoppa"
+    - name: github
+      url: "https://github.com/jstoppa"
+
+menu:
+  main:
+    - name: Archives
+      url: /archives/
+      weight: 5
+    - name: Tags
+      url: /tags/
+      weight: 10
+
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
+
+privacy:
+  vimeo:
+    disabled: false
+    simple: true
+
+  twitter:
+    disabled: false
+    enableDNT: true
+    simple: true
+
+  instagram:
+    disabled: false
+    simple: true
+
+  youtube:
+    disabled: false
+    privacyEnhanced: true
+
+services:
+  instagram:
+    disableInlineCSS: true
+  twitter:
+    disableInlineCSS: true
