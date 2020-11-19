@@ -4,7 +4,7 @@ title: Open Banking - what is it and how does it work?
 summary: Open Banking has become the latest buzzword in FinTech, it's set to revolutionise the financial industry but what is it and how does it work?
 date: 2020-11-19
 description: All you need to know to understand open banking and start using it.
-draft: true
+draft: false
 math: true
 tags: ["openbanking", "fintech", "api", "technology"]
 cover:
@@ -74,7 +74,7 @@ The application can then use the access token to retrieve the following data dep
 Swagger specification for all APIs can be found [here](https://github.com/OpenBankingUK/read-write-api-specs).
 
 
-Once a AISP application gains access to user's data, it can retain access for a period of 90 days. After this period the user will need to reconnect to the bank provider a request a new consent (find more details [here](https://standards.openbanking.org.uk/customer-experience-guidelines/ais-core-journeys/refreshing-aisp-access/latest/)). This is very important when building applications that use Open Banking, it needs to be designed in way to make this process as easy as possible.
+Once a AISP application gains access to user's data, it can retain access for a period of 90 days. After this period the user will need to reconnect to the bank provider to request a new consent (find more details [here](https://standards.openbanking.org.uk/customer-experience-guidelines/ais-core-journeys/refreshing-aisp-access/latest/)). This is very important when building applications that use Open Banking, it needs to be designed in way to make this process as easy as possible.
 
 It's also extremely important to understand that accessing this data is subject to General Data Protection Regulation (GDPR) compliance. 
 
