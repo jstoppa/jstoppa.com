@@ -34,9 +34,20 @@ params:
       url: "https://uk.linkedin.com/in/jstoppa"
     - name: github
       url: "https://github.com/jstoppa"
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
 
 menu:
   main:
+    - name: Search
+      url: search/
+      weight: 10
     - name: Archives
       url: /archives/
       weight: 5
@@ -72,3 +83,9 @@ services:
     disableInlineCSS: true
   twitter:
     disableInlineCSS: true
+
+outputs:
+    home:
+        - HTML
+        - RSS
+        - JSON
