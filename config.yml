@@ -3,7 +3,7 @@ title: Juan Stoppa
 paginate: 8
 theme: hugo-PaperMod
 enableInlineShortcodes: true
-googleAnalytics: UA-181211313-1
+googleAnalytics: G-R93JSQH2R9
 
 params:
   env: production
