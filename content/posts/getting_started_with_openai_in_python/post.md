@@ -4,7 +4,7 @@ title: Getting started with OpenAI in Python
 summary: A beginner's guide to install Python and start using OpenAI in Windows
 date: 2023-04-19
 description: A beginner's guide to get started using OpenAI using Python in Windows
-draft: false
+draft: true
 math: true
 tags: ["openai", "python", "chatgpt", "gpt"]
 cover:
@@ -96,7 +96,7 @@ pip install openai
 ![Creating an OpenAI key](/posts/getting_started_with_openai_in_python/creating_openai_key.png)
 
 3. Save your API key as an environment variable named `OPENAI_API_KEY`. 
-![Save the OPEN API Key to environment variable](/posts/getting_started_with_openai_in_python/setting_openapi_key.png)  
+![Save the OPEN API Key to environment variable](/posts/getting_started_with_openai_in_python/setting_openai_key.png)  
 
 4. Create a new Python file (e.g., openai_hello_world.py) and add the following code:
 
