@@ -21,17 +21,17 @@ ShowReadingTime: true
 
 ## Introduction
 
-Welcome to this beginner's guide on setting up your Windows environment for OpenAI development! In this article, I will cover the basics of installing Python, using pip, creating virtual environments, and debugging code in VSCode. By the end of this article, you will have a solid foundation to start your OpenAI journey using the GPT API and understand how ChatGPT works behind the scene.
-
-NOTE: This post is specifically dedicated to the folks that use Windows, I haven't added the steps to do it in other operating systems.
+I noticed that a lot of folks using Microsoft stack (whether they are .NET developers or users with a technical background) would normally be adverse at using Python. I personally feel is a great language, reasonably easy to learn and almost a must have tool for those trying to work in data science or for this case specifically, building a solution to interact with the OpenAI API.  
+This is why I decide to create this beginner's guide on setting up your Windows environment for OpenAI development! In this article, I will cover the basics of installing Python, using pip, creating virtual environments, and debugging code in VSCode. By the end of this article, you will have a solid foundation to start your OpenAI journey using the GPT API and understand how ChatGPT works behind the scene.
 
 ## 1. How to Install Python on Windows
 
 To get started, you'll need to install Python on your Windows machine. Follow these steps:
 
-1. Go to the official Python website (https://www.python.org/downloads/windows/) and download the latest Python installer for Windows.
-2. Run the installer and make sure to check the box that says "Add Python to PATH" before clicking the "Install Now" button. This will make it easier to use Python from the command prompt.
-3. Once the installation is complete, open a new command prompt and type `python --version` to verify that Python is installed correctly. You should see the version number you just installed.
+1. First of all, make sure you don't have an old version of Python already installed on your local machine, you can check that in your Program and Features in your Windows machine. 
+2. Go to the official Python website (https://www.python.org/downloads/windows/) and download the latest Python installer for Windows. 
+3. Run the installer and make sure to check the box that says "Add Python to PATH" before clicking the "Install Now" button. This will make it easier to use Python from the command prompt.
+4. Once the installation is complete, open a new command prompt and type `python --version` to verify that Python is installed correctly. You should see the version number you just installed.
 
 ## 2. How to Install Pip
 
@@ -123,10 +123,10 @@ response = openai.Completion.create(
 # Print the generated greeting
 print(response.choices[0].text.strip())
 ```
-5. Run the openai_hello_world.py script in your virtual environment, the script will call the OpenAI API, generate a creative greeting, and print it to the console.
+5. Run the openai_hello_world.py script in your virtual environment, the script will call the Completion API from OpenAI to  generate a creative greeting, it will then print the results to the console.
 
 ![Running OpenAI code](/posts/getting_started_with_openai_in_python/running_openai_code.gif) 
 
 ## Conclusion
 
-Congratulations! You have successfully set up your Windows environment for OpenAI development. You've learned how to install Python and pip, create virtual environments, and debug code in VSCode using the openai library. Now you're ready to dive into the world of OpenAI and start building exciting projects!
+Well done! You have successfully set up your Windows environment for OpenAI development. You've learned how to install `Python` and `pip`, create `virtual environments`, and debug code in `VSCode` using the openai library. Now you're ready to dive into the world of OpenAI and start building exciting projects!
