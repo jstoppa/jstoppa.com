@@ -25,7 +25,7 @@ params:
 
   homeInfoParams:
     Title: "Hi, I'm Juan \U0001F44B"
-    Content: I'm a software engineer living in London and working in Fintech. 
+    Content: In this blog, I blend my tech leadership experiences with a strategic focus on AI applications, sharing insights into the future of finance and technology. Views are my own. 
 
   socialIcons:
     - name: twitter
