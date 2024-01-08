@@ -1,6 +1,6 @@
 ---
 author: Juan Stoppa
-title: Explorig the GPT Vision API
+title: Exploring the GPT Vision API
 summary: This article explore the GPT Vision API.
 date: 2020-11-19
 description: All you need to know to understand the GPT Vision API.
