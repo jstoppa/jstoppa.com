@@ -1,26 +1,30 @@
 ---
 author: Juan Stoppa
-title: Exploring the GPT Vision API
-summary: This article explore the GPT Vision API.
-date: 2020-11-19
-description: All you need to know to understand the GPT Vision API.
+title: Exploring the GPT-4 with Vision API
+summary: This article explores the capabilities of the GPT-4 Vision API with an example of each case including more complex scenarios such as object location.
+date: 2024-01-08
+description: All you need to know to understand the GPT-4 with Vision API.
 draft: true
 math: true
-tags: ["openai", "python", "chatgpt", "gpt", "gpt-v"]
+tags: ["openai", "python", "chatgpt", "gpt-4", "gpt4-vision"]
 cover:
-    image: "posts/demo_bar_chart_race_using_open_banking/openbanking.jpg"
-    caption: Photo by Austin Distel on Unsplash
+    image: "posts/exploring_the_GPT_Vision_api/GPT-4 Vision2.webp"
+    caption: GPT-4 with Vision
 twitter:
     card: summary_large_image
     site: "@juanstoppa"
-    title: DEMO - Developing a bar chart race using Open Banking
-    description: All you need to know to understand open banking and start using it
+    title: Exploring the GPT-4 with Vision API
+    description: All you need to know to understand the GPT-4 with Vision API.
 ---
 
+I've been exploring the GPT-Vision API, at the time of this post the API was in preview mode however it already shoed great advance on what you can do 
 
-Open Banking has become the latest buzzword in FinTech, it's set to revolutionise the financial industry but what is it and how does it work? This article covers all the basics and gives you some insights on how to use it. 
+## What is GPT-4 with Vision API
 
-## The basics 
+GPT-4 Turbo with Vision represents an advanced multimodal model (LMM) created by OpenAI, capable of interpreting images and offering textual answers to queries related to these images. This model blends the capabilities of visual perception with the sophistication of natural language processing.
 
-Open Banking is a secure way to give providers access to your financial information. It all began when the European Parliament adopted the revised [Payment Service Directive (PSD2)](https://ec.europa.eu/commission/presscorner/detail/en/QANDA_19_5555) which aims at promoting innovation, competition and efficiency in payment services. This also triggered the UK to issue a ruling that required the nine-biggest UK banks to allow providers access to their data and many other banks followed suit. 
+## The Basic.
+
+The API is used in a similar way as the normal completion api (see ![Getting started with OpenAI in Python](/posts/getting_started_with_openai_in_python/create_v
+
 
