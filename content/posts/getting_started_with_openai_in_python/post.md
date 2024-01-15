@@ -1,6 +1,6 @@
 ---
 author: Juan Stoppa
-title: Getting started with OpenAI in Python
+title: Getting started with OpenAI using Python in Windows
 summary: A beginner's guide to install Python and start using OpenAI in Windows
 date: 2023-04-19
 description: A beginner's guide to get started using OpenAI and Python in Windows
@@ -22,7 +22,7 @@ ShowReadingTime: true
 ## Introduction
 
 I noticed that a lot of folks using Microsoft stack (whether they are .NET developers or users with a technical background) would normally be adverse at using Python. I personally feel is a great language, reasonably easy to learn and almost a must have tool for those trying to work in data science or for this case specifically, building a solution to interact with the OpenAI API.  
-This is why I decide to create this beginner's guide on setting up your Windows environment for OpenAI development! In this article, I will cover the basics of installing Python, using pip, creating virtual environments, and debugging code in VSCode. By the end of this article, you will have a solid foundation to start your OpenAI journey using the GPT API and understand how ChatGPT works behind the scene.
+This is why I decided to create this beginner's guide on setting up your Windows environment for OpenAI development! In this article, I will cover the basics of installing Python, using pip, creating virtual environments, and debugging code in VSCode. By the end of this article, you will have a solid foundation to start your OpenAI journey using the GPT API and understand how ChatGPT works behind the scene.
 
 ## 1. How to Install Python on Windows
 
