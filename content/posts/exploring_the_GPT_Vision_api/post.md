@@ -21,10 +21,10 @@ I've been exploring the GPT-Vision API and I've been blown away at what is capab
 
 ## What is GPT-4 with Vision API to start with?
 
-GPT-4 Turbo with Vision is an advanced multimodal model (LMM) created by OpenAI, capable of interpreting images and offering textual answers to queries related to these images. This model blends the capabilities of visual perception with the natural language processing. 
+GPT-4 Turbo with Vision is an advanced large multimodal model (LMM) created by OpenAI, capable of interpreting images and offering textual answers to queries related to these images. This model blends the capabilities of visual perception with the natural language processing. 
 
 ## The Basic - How to use it?
 
-The API is used in a similar way as the normal completion API and I recommend using Python to interact with it as it's the best language well supported by the Open AI documentation. If you are new and using Windows, NOTE: you can see my article [Getting started with OpenAI in Python](http://localhost:1313/posts/getting_started_with_openai_in_python/post/)
+The API is used in a similar way as the normal completion API and I recommend using Python to interact with it as it's the best language well supported by the Open AI documentation. If you are new and using Windows, you can see my article [Getting started with OpenAI in Python](http://localhost:1313/posts/getting_started_with_openai_in_python/post/) where are explained all the details on how to setup Python and interact with Open AI
 
 
