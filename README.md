@@ -2,15 +2,18 @@
 
 Juan Stoppa's personal blog 
 
-Blog powered by [Hugo](https://gohugo.io/) using [hugo-PaperMod](https://github.com/adityatelange/hugo-PaperMod) theme
+### Development step
+- Deploy changes to the blog => `git push --mirror https://github.com/jstoppa/jstoppa.com.git`
 
-To deploy changes to the blog use `git push --mirror https://github.com/jstoppa/jstoppa.com.git`
+### Run blog locally
 
-To install hugo run `winget install Hugo.Hugo.Extended` from the command line 
+- Install hugo locally => `winget install Hugo.Hugo.Extended` from the command line 
 
-To upgrade PaperMod 
+- Upgrade PaperMod =>
 ```
 git submodule add --depth=1 https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
 git submodule update --init --recursive
 ```
+- Run Hugo locally => `hugo serve`
 
+Blog powered by [Hugo](https://gohugo.io/) using [hugo-PaperMod](https://github.com/adityatelange/hugo-PaperMod) theme
