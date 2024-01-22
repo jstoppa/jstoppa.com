@@ -4,7 +4,7 @@ title: Exploring the GPT-4 with Vision API
 summary: This article explores the capabilities of the GPT-4 Vision API with an example of each case including more complex scenarios such as object location.
 date: 2024-01-08
 description: All you need to know to understand the GPT-4 with Vision API.
-draft: false
+draft: true
 math: true
 tags: ["openai", "python", "chatgpt", "gpt-4", "gpt4-vision"]
 cover:
@@ -23,11 +23,38 @@ I've been exploring the GPT-Vision API and I have been blown away by what is cap
 
 GPT-4 Turbo with Vision is an advanced large multimodal model (LMM) created by OpenAI, capable of interpreting images and offering textual answers to queries related to these images. This model blends the capabilities of visual perception with the natural language processing. 
 
-## The Basic - How to use it?
+## The Basic - How to use the API?
 
-The API is used in a way similar to the standard completion API, and I recommend using Python for integration with the API as it's the best-supported language in Open AI's documentation. If you are new to this and using Windows, you might find my article [Getting started with OpenAI in Python](http://localhost:1313/posts/getting_started_with_openai_in_python/post/) helpful where I explain all the details on how to set up Python and interact with OpenAI.
+The API is used in a way similar to the standard completion API, and I recommend using Python for integration with the API as it's the best-supported language in Open AI's documentation. If you are new to this and using Windows, you might find my article [Getting started with OpenAI in Python](/posts/getting_started_with_openai_in_python/post/) helpful where I explain all the details on how to set up Python and interact with OpenAI.
 
+Once setup, the following code will connect to Open AI and answer a simple question: `what can you see in the image?`
 
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+response = client.chat.completions.create(
+  model="gpt-4-vision-preview",
+  messages=[
+    {
+      "role": "user",
+      "content": [
+        {"type": "text", "text": "What’s in this image?"},
+        {
+          "type": "image_url",
+          "image_url": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg",
+          },
+        },
+      ],
+    }
+  ],
+  max_tokens=300,
+)
+
+print(response.choices[0])
+````
 
 
 
