@@ -71,5 +71,7 @@ and the result from the GPT Vision API...
 
 Very impressive results! It's able to describe the image including minimal details using very comprehensive words, it even highlights that the day is cloudy.
 
-It's also possible to send local images in your machine, for that OpenAI has some code examples in their documentation
+It's also possible to send local images in your machine, for that OpenAI has some code examples in their documentation.
+
+
 
