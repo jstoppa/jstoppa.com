@@ -4,7 +4,7 @@ title: Exploring the GPT-4 with Vision API
 summary: This article explores the capabilities of the GPT-4 Vision API with an example of each case including more complex scenarios such as object location.
 date: 2024-01-08
 description: All you need to know to understand the GPT-4 with Vision API.
-draft: true
+draft: false
 math: true
 tags: ["openai", "python", "chatgpt", "gpt-4", "gpt4-vision"]
 cover:
@@ -27,24 +27,30 @@ GPT-4 Turbo with Vision is an advanced large multimodal model (LMM) created by O
 
 The API is used in a way similar to the standard completion API, and I recommend using Python for integration with the API as it's the best-supported language in Open AI's documentation. If you are new to this and using Windows, you might find my article [Getting started with OpenAI in Python](/posts/getting_started_with_openai_in_python/post/) helpful where I explain all the details on how to set up Python and interact with OpenAI.
 
-Once setup, the following code will connect to Open AI and answer a simple question: `what can you see in the image?`
+Once setup, the following code will connect to Open AI and answer a simple question: 
+`what can you see in the image?`
 
 ```python
 from openai import OpenAI
+import os
 
-client = OpenAI()
+# create OpenAI client
+client = OpenAI(
+    api_key = os.environ.get("OPENAI_API_KEY"),
+)
 
+# call the API with prompt "What can you see in the image?"
 response = client.chat.completions.create(
   model="gpt-4-vision-preview",
   messages=[
     {
       "role": "user",
       "content": [
-        {"type": "text", "text": "What’s in this image?"},
+        {"type": "text", "text": "What can you see in the image?"},
         {
           "type": "image_url",
           "image_url": {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg",
+            "url": "https://jstoppa.com/posts/exploring_the_GPT_Vision_api/GPTVision_example1.png",
           },
         },
       ],
@@ -54,8 +60,16 @@ response = client.chat.completions.create(
 )
 
 print(response.choices[0])
-````
+```
 
+The image is the following:
+![Image example for GPT-Vision](/posts/exploring_the_GPT_Vision_api/GPTVision_example1.png)  
 
+and the result from the GPT Vision API... 
 
+> The image shows a part of a building that looks to be residential in nature. It has a slanted roof covered with dark grey slate tiles. There's a dormer with a window, which suggests an attic or loft space, and the facade includes red brickwork with stone elements that provide a decorative pattern. Below the bricks and stone there’s a ledge or overhang, possibly indicating that this section of the building is above ground level, such as on the first floor or higher. The windows are white-framed and double-glazed. Above the dormer, there are red chimney pots visible, indicating the presence of one or more fireplaces within the building. It appears to be a cloudy day, as the sky is overcast.
+
+Very impressive results! It's able to describe the image including minimal details using very comprehensive words, it even highlights that the day is cloudy.
+
+It's also possible to send local images in your machine, for that OpenAI has some code examples in their documentation
 
