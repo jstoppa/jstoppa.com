@@ -101,27 +101,27 @@ pip install openai
 4. Create a new Python file (e.g., openai_hello_world.py) and add the following code:
 
 ```python
-import openai
+from openai import OpenAI
 import os
 
 # Load your API key from the environment variable
-openai.api_key = os.environ.get("OPENAI_API_KEY")
 
-# Set up the prompt for the GPT-4 model
+# Create client
+client = OpenAI(
+    api_key = os.environ.get("OPENAI_API_KEY"),
+)
+
+# Set up the prompt for the GPT model
 prompt = "Create a creative greeting:"
 
 # Call the OpenAI API to generate a response
-response = openai.Completion.create(
-    engine="text-davinci-002",
-    prompt=prompt,
-    max_tokens=10,
-    n=1,
-    stop=None,
-    temperature=0.5,
+response = client.chat.completions.create(
+    model="gpt-3.5-turbo",
+    messages=[{'role': 'user', "content": prompt}]
 )
 
 # Print the generated greeting
-print(response.choices[0].text.strip())
+print(response.choices[0].message.content)
 ```
 5. Run the openai_hello_world.py script in your virtual environment, the script will call the Completion API from OpenAI to  generate a creative greeting, it will then print the results to the console.
 

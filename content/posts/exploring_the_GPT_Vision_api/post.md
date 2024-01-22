@@ -17,7 +17,7 @@ twitter:
     description: All you need to know to understand the GPT-4 with Vision API.
 ---
 
-I've been exploring the GPT-Vision API and I've been blown away at what is capable of, as Open AI puts it, ChatGPT can now see, hear and speak. But how good is the API? I'm doing a deep dive in this article with all the technical details and results.
+I've been exploring the GPT-Vision API and I have been blown away by what is capable of. As Open AI describes it, ChatGPT can now see, hear, and speak. But how effective is the API? In this article, I'm doing a deep dive into the GPT vision API describing all the technical details. 
 
 ## What is GPT-4 with Vision API to start with?
 
@@ -25,6 +25,10 @@ GPT-4 Turbo with Vision is an advanced large multimodal model (LMM) created by O
 
 ## The Basic - How to use it?
 
-The API is used in a similar way as the normal completion API and I recommend using Python to interact with it as it's the best language well supported by the Open AI documentation. If you are new and using Windows, you can see my article [Getting started with OpenAI in Python](http://localhost:1313/posts/getting_started_with_openai_in_python/post/) where are explained all the details on how to setup Python and interact with Open AI
+The API is used in a way similar to the standard completion API, and I recommend using Python for integration with the API as it's the best-supported language in Open AI's documentation. If you are new to this and using Windows, you might find my article [Getting started with OpenAI in Python](http://localhost:1313/posts/getting_started_with_openai_in_python/post/) helpful where I explain all the details on how to set up Python and interact with OpenAI.
+
+
+
+
 
 
