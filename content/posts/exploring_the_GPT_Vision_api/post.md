@@ -17,15 +17,15 @@ twitter:
     description: All you need to know to understand the GPT-4 with Vision API.
 ---
 
-I've been exploring the GPT-Vision API and I have been blown away by what is capable of. As Open AI describes it, ChatGPT can now see, hear, and speak. But how effective is the API? In this article, I'm doing a deep dive into the GPT vision API describing all the technical details. 
+I've been exploring the GPT-Vision API and I have been blown away by what it is capable of. As Open AI describes it, ChatGPT can now see, hear, and speak. But how effective is the API? In this article, I'm doing a deep dive into the GPT vision API describing all the technical details. 
 
 ## What is GPT-4 with Vision API to start with?
 
-GPT-4 Turbo with Vision is an advanced large multimodal model (LMM) created by OpenAI, capable of interpreting images and offering textual answers to queries related to these images. This model blends the capabilities of visual perception with the natural language processing. 
+GPT-4 Turbo with Vision is an advanced large multi-modal model (LMM) created by OpenAI, capable of interpreting images and offering textual answers to queries related to these images. This model blends the capabilities of visual perception with the natural language processing. 
 
 ## The Basic - How to use the API?
 
-The API is used in a way similar to the standard completion API, and I recommend using Python for integration with the API as it's the best-supported language in Open AI's documentation. If you are new to this and using Windows, you might find my article [Getting started with OpenAI in Python](/posts/getting_started_with_openai_in_python/post/) helpful where I explain all the details on how to set up Python and interact with OpenAI.
+The API is used similarly to the standard completion API, I recommend using Python for integration with the API, as it's the best-supported language in Open AI's documentation. If you are new to this (and perhaps using Windows like me), you might find my article [Getting started with OpenAI in Python](/posts/getting_started_with_openai_in_python/post/) helpful where I explain all the details on how to set up Python and interact with OpenAI.
 
 Once setup, the following code will connect to Open AI and answer a simple question: 
 `what can you see in the image?`
@@ -62,7 +62,7 @@ response = client.chat.completions.create(
 print(response.choices[0])
 ```
 
-The image is the following:
+here's the image used in the example:
 ![Image example for GPT-Vision](/posts/exploring_the_GPT_Vision_api/GPTVision_example1.png)  
 
 and the result from the GPT Vision API... 
@@ -71,7 +71,10 @@ and the result from the GPT Vision API...
 
 Very impressive results! It's able to describe the image including minimal details using very comprehensive words, it even highlights that the day is cloudy.
 
-It's also possible to send local images in your machine, for that OpenAI has some code examples in their documentation.
+## What about Video?
+The GPT Vision API doesn't provide the ability to upload a video but it's capable of processing image frames and understand them as a whole. A great example could be to stream the camera from your computer and ask GPT to explain what it can see, for this we can use the grate OpenCV library to stream the images into the Chat GPT API.
+
+
 
 
 

@@ -12,6 +12,8 @@ params:
   ShowReadingTime: true
   defaultTheme: auto
   ShowShareButtons: true
+  ShowCodeCopyButtons: true
+  ShowPostNavLinks: true
   profileMode:
     enabled: false
     title: PaperMod
