@@ -104,10 +104,9 @@ pip install openai
 from openai import OpenAI
 import os
 
-# Load your API key from the environment variable
-
 # Create client
 client = OpenAI(
+    # Load your API key from the environment variable
     api_key = os.environ.get("OPENAI_API_KEY"),
 )
 
