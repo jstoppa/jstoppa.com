@@ -247,4 +247,4 @@ cv2.destroyAllWindows()
 ```
 
 ## Conclusion
-This should give a good understanding of what's possible and dig even deeper into GPT with Vision API, with some imagination one can bridge the gap between the limitation and the API catabolites. As we continue to explore what is possible, the potential application are only limited by our imagination. 
+This should give a good understanding of what's possible and dig even deeper into GPT with Vision API, with some imagination one can bridge the gap between the limitation and the API capabilities. As we continue to explore what is possible, the potential application are only limited by our imagination. 
