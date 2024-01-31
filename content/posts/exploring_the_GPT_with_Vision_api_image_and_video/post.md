@@ -2,8 +2,8 @@
 author: Juan Stoppa
 title: Exploring the GPT-4 with Vision API using Images and Videos
 summary: This article explores the capabilities of the GPT-4 with Vision API using Images and Videos with code examples in Python.
-date: 2024-01-29
-description: All you need to know to understand the GPT-4 Vision API with examples for processing Images and Videos
+date: 2024-01-31
+description: All you need to know to understand the GPT-4 with Vision API with examples for processing Images and Videos
 draft: false
 math: true
 tags: ["openai", "python", "chatgpt", "gpt-4", "gpt-4 vision"]
@@ -14,14 +14,14 @@ twitter:
     card: summary_large_image
     site: "@juanstoppa"
     title: Exploring the GPT-4 with Vision API using Images and Videos
-    description: All you need to know to understand the GPT-4 Vision API with examples for processing Images and Videos.
+    description: All you need to know to understand the GPT-4 with Vision API with examples for processing Images and Videos.
 ---
 
-I've been exploring the GPT-4 with Vision API and I have been blown away by what it is capable of. As OpenAI describes it, ChatGPT can now see, hear, and speak. But how effective is the API? In this article, I'm doing a deep dive into the GPT vision API describing all the technical details. 
+I've been exploring the GPT-4 with Vision API and I have been blown away by what it is capable of. As OpenAI describes it, ChatGPT can now see, hear, and speak. But how effective is the API? In this article, I'm doing a deep dive into the GPT-4 with Vision API describing the technical details to use it.
 
 ## What is GPT-4 with Vision API to start with?
 
-GPT-4 with Vision (also called GPT-V) is an advanced large multimodal model (LMM) created by OpenAI, capable of interpreting images and offering textual answers to queries related to these images. This model blends the capabilities of visual perception with the natural language processing. There are several use cases for the Vision API, from recognising objects to translating mockups into real software. As it improves, the number of use cases where it can be implemented will continue to grow.
+GPT-4 with Vision (also called GPT-V) is an advanced large multimodal model (LMM) created by OpenAI, capable of interpreting images and offering textual answers to queries related to these images. This model blends the capabilities of visual perception with the natural language processing. There are several use cases for the Vision API, from recognising objects to translating mockups into real software or generating real time descriptions on images and videos.
 
 ## The Basic - How to use the API?
 
@@ -69,10 +69,10 @@ and the result from the GPT with Vision API...
 
 > The image shows a part of a building that looks to be residential in nature. It has a slanted roof covered with dark grey slate tiles. There's a dormer with a window, which suggests an attic or loft space, and the facade includes red brickwork with stone elements that provide a decorative pattern. Below the bricks and stone there’s a ledge or overhang, possibly indicating that this section of the building is above ground level, such as on the first floor or higher. The windows are white-framed and double-glazed. Above the dormer, there are red chimney pots visible, indicating the presence of one or more fireplaces within the building. It appears to be a cloudy day, as the sky is overcast.
 
-Very impressive results! It's able to describe the image including minimal details using very comprehensive words, it even highlights that the day is cloudy.
+Very impressive results! It's able to describe the image including minimal details using very comprehensive words, it even highlights that the day is cloudy like most days in London.
 
 ## Looking at more complex scenarios
-I've noticed the API to start struggling when is asked more complex questions such as explaining a chart or giving the specific location of items in images. OpenAI highlights [in their website](https://platform.openai.com/docs/guides/vision/limitations) that the model may not be accurate in certain scenarios, including spacial reasoning, counting, resolving CAPTCHAs or analysing medical images, last two most likely due to security concerns.
+I've noticed the model to start struggling when is asked more complex questions such as explaining a chart or giving the specific location of items in images. OpenAI highlights [in their website](https://platform.openai.com/docs/guides/vision/limitations) that the model may not be accurate in certain scenarios, including spatial reasoning, counting, resolving CAPTCHAs or analysing medical images, last two most likely due to security concerns.
 I was particularly interested in exploring how I could use the model to automate simple tasks in the computer. ChatGPT is very good at explaining tasks and meticulously outlines the steps to carry those tasks, but executing them is well beyond the model's and vision's capabilities.
 
 My first attempt to test the above involved creating a Python script that captures a screenshot of my desktop and identifies Google Chrome on the screen. When I asked the model to provide the exact coordinate of the Google Chrome icon, it would always return very vague answers. In these cases, I realised that the model needs some hint, I tried with an overlaid grid with references 
@@ -83,7 +83,7 @@ and prompt the following:
 
 This approach was still not great, GPT would correctly guess the quadrant about 50% of the time. To improve accuracy, I gave GPT a second chance: I zoomed in around the area of the first quadrant chosen and requested GPT to find the quadrant again.
 
-![Second chance with a zoomed in overlaid grid](/posts/exploring_the_GPT_with_Vision_api_image_and_video/latest_zoomed_in_annotated_screenshot.png)  
+![Second chance with a zoomed in overlaid grid](/posts/exploring_the_GPT_with_Vision_api_image_and_video/annotated_screenshot_zoomed_in.png)  
 
 this time GPT would get it right most of the times which gives a much more accurate result.
 
@@ -96,7 +96,7 @@ The final result was great, with that info I'd then drive the mouse to locate th
 <br>
 {{< /rawhtml >}}
 
-## What about Video?
+## What about Videos?
 The GPT with Vision API doesn't provide the ability to upload a video but it's capable of processing image frames and understand them as a whole. A good example could involve streaming video from a computer's camera and asking GPT to explain what it can see. I've put together an example on how this can be done using Python.
 
 We first need to switch on the camera and take some frames, for this we can use the great OpenCV library to take frames from the video and send them to Chat GPT API.
@@ -162,10 +162,12 @@ And the result was the following:
 
 > I can see a mechanical device made of wood and some transparent materials, possibly acrylic or glass. It has several circular elements, which look like they could be tracks or pathways for a ball to roll on. The construction also includes gear-like components, suggesting that the device has moving parts and might be operated by turning the gears, possibly as part of a kinetic installation or a marble machine. The repeated frames suggest that the device might be in motion during the video.
 
-## Combining Vision and Text to Speech
-The final test for me involved testing the GPT with Vision API combined with the Text to speech API, rather than displaying the text on the screen it would directly say it out loud.
+The model has taken the group of images and analysed them as a whole, the description gives a high level understanding of what i can see although is not entirely sure about the motions.
 
-The Python script below simulates a conversation between "Nova" and "Onyx", two voices from the Text to speech API. The script turns on the camera and "Nova" asks "Onyx" what it can see,  it iterates until the letter Q is pressed.
+## Combining Vision and Text to Speech
+The final test I wanted to do involved testing it with the Text to speech API, rather than displaying the text on the screen it would directly say it out loud. This is also a powerful API as you could have different agents interacting with each other, that's probably an example for another day.
+
+The Python script below simulates a conversation between "Nova" and "Onyx", two voices from the Text to speech API. The script turns on the camera and "Nova" asks "Onyx" what it can see,  it iterates until the letter Q is pressed. The video is displayed in the screen and the scripts takes a frame every 100ms until it capture 200, the result is then sent to the Text to speech API to reproduce it.
 
 ```python
 from openai import OpenAI
@@ -245,6 +247,24 @@ while True:
 cap.release()
 cv2.destroyAllWindows()
 ```
+I took a video to show what the script does, you can run it in your own machine to test it.
+{{< rawhtml >}} 
+<video width="650" height="480" style="display: block; margin: 0 auto" controls>
+  <source src="/posts/exploring_the_GPT_with_Vision_api_image_and_video/marble_run_video_and_voice.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<br>
+{{< /rawhtml >}}
 
 ## Conclusion
-This should give a good understanding of what's possible and dig even deeper into GPT with Vision API, with some imagination one can bridge the gap between the limitation and the API capabilities. As we continue to explore what is possible, the potential application are only limited by our imagination. 
+This should give a good understanding of what's possible and help to dig even deeper into GPT with Vision API. With some imagination, one can bridge the gap between the model's limitations and strengths. 
+
+Some key points from this post:
+* The model can handle both images and videos, although a bit of image processing is required for videos.
+* Taking images is straightforward, it can process URLs or local images converted to Base64.
+* The model struggles with tasks such as counting, understanding charts or anything that involves spatial reasoning.
+* For spatial reasoning, it's possible to give the model hints such as highlighting areas in the image, this helps the model to produce a more accurate result.
+* It can process frames of a video and understand them as a whole.
+
+
+If you liked this article and would like to read more, then follow me on X at [@juanstoppa](https://twitter.com/juanstoppa), where I post regularly about AI.

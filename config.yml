@@ -27,7 +27,7 @@ params:
 
   homeInfoParams:
     Title: "Welcome! \U0001F44B"
-    Content: Thanks for visiting my blog. I use this space to write about technology; I'm currently exploring the world of AI, focusing primarily on practical examples in real life. I'm trying to write as often as possible, so watch this space or follow me on X/Twitter at [@juanstoppa](https://twitter.com/juanstoppa) where I post very often.
+    Content: I use this space to write about technology; I'm currently exploring the world of AI, focusing primarily on practical examples in real life. I'm trying to write as often as possible, so watch this space or follow me on X/Twitter at [@juanstoppa](https://twitter.com/juanstoppa) where I post very often.
 
   socialIcons:
     - name: twitter
