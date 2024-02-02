@@ -14,7 +14,7 @@ twitter:
     card: summary_large_image
     site: "@juanstoppa"
     title: Understanding Embeddings - From Theory to Practice
-    description: TBC
+    description: Understanding Embeddings - From Theory to Practice
 ---
 
 
