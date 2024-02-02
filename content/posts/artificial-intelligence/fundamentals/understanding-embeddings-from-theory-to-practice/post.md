@@ -3,7 +3,7 @@ author: Juan Stoppa
 title: Understanding Embeddings - From Theory to Practice
 summary: TBC
 date: 2024-11-19
-description: All you need to know to understand open banking and start using it.
+description: TBC
 draft: true
 math: true
 tags: ["openbanking", "fintech", "api", "demo"]
