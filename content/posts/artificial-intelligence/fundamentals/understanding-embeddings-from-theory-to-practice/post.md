@@ -2,7 +2,7 @@
 author: Juan Stoppa
 title: Understanding Embeddings - From Theory to Practice
 summary: TBC
-date: 2024-11-19
+date: 2024-02-07
 description: TBC
 draft: true
 math: true
