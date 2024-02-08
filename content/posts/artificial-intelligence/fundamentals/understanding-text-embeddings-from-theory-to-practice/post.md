@@ -1,6 +1,6 @@
 ---
 author: Juan Stoppa
-title: Understanding Embeddings - From Theory to Practice
+title: Understanding Text Embeddings - From Theory to Practice
 summary: TBC
 date: 2024-02-07
 description: TBC
@@ -13,9 +13,9 @@ cover:
 twitter:
     card: summary_large_image
     site: "@juanstoppa"
-    title: Understanding Embeddings - From Theory to Practice
+    title: Understanding Text mbeddings - From Theory to Practice
     description: Understanding Embeddings - From Theory to Practice
 ---
 
-
+Embeddings are a great functionality
 
