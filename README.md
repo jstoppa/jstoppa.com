@@ -16,4 +16,4 @@ git submodule update --init --recursive
 ```
 - Run Hugo locally => `hugo serve`
 
-Blog powered by [Hugo](https://gohugo.io/) using [hugo-PaperMod](https://github.com/adityatelange/hugo-PaperMod) theme
+Blog powered by [Hugo](https://gohugo.io/) using [hugo-PaperMod](https://github.com/adityatelange/hugo-PaperMod) theme.
