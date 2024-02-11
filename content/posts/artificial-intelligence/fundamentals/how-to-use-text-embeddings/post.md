@@ -36,3 +36,4 @@ The model will encode it with the following number vector
 [ 0.12123, 0.32122, 0.23123, 0.23212, 0.23232, 0.1231]
 ```
 
+I'm going to show how you can do in 3 technologies
