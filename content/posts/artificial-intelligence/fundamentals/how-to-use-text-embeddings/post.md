@@ -37,3 +37,8 @@ The model will encode it with the following number vector
 ```
 
 I'm going to show how you can do in 3 technologies
+
+- GPT 
+- Hugging Face
+- Google Bertex
+- Llama
