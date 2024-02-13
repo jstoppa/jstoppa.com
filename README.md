@@ -7,7 +7,7 @@ Juan Stoppa's personal blog
 
 ### Run blog locally
 
-- Install hugo locally => `winget install Hugo.Hugo.Extended` from the command line 
+- Install hugo locally => `winget install Hugo.Hugo.Extended` from the command line.
 
 - Upgrade PaperMod =>
 ```
@@ -17,3 +17,4 @@ git submodule update --init --recursive
 - Run Hugo locally => `hugo serve`
 
 Blog powered by [Hugo](https://gohugo.io/) using [hugo-PaperMod](https://github.com/adityatelange/hugo-PaperMod) theme.
+
