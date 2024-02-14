@@ -22,7 +22,7 @@ Text embeddings are a technique in Natural Language Processing (NLP) that transf
 The understanding of this semantic allows the models to perform tasks like sentiment analysis, language translation, and content recommendation with a degree that mirrors human comprehension.
 
 # How does it work?
-At a very high level, text can be pass to the model to generate the emmbeddings adn the model returns the represenation of that text in numerical vector.
+At a very high level, text can be pass to the model to generate the embeddings adn the model returns the representation of that text in numerical vector.
 
 For instance, if I provide the following to a model such as 
 
