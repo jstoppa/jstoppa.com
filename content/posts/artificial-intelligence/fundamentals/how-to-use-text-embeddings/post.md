@@ -60,7 +60,7 @@ I've put the steps below to analyse two well known tools:
 - OpenAI 
 - Hugging Face
 
-NOTE: there are many other models but this will give the general understanding on how to do embedding which can be easily translated to other models
+NOTE: there are many other models but this will give the general understanding on how to do embedding which can be easily translated to other models.
 
 To test this example, I have downloaded 5000 reviews from Trust Pilot for the internet provider Virgin Media.
 
