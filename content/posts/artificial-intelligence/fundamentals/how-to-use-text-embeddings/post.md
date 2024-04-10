@@ -53,6 +53,8 @@ To recap, the process of embedding involves the following steps:
 
 The diagram below shows how the process work.
 
+Add more info here
+
 # Testing models
 
 I've put the steps below to analyse two well known tools:
