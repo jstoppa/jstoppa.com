@@ -79,7 +79,7 @@ The next step is to select the type of search (Keyword) and then the chunk size 
 
 Once finished, the ingestion progress will start which should take a few minutes
 
-# Querying the data
+## Querying the data
 
 You can now ask any question to the document and it should come with an answer about the document, for instance I have asked to give a summary of Microsoft 2023 Annual report and returned the following
 ![Azure Open AI Studio - Adding Keyword and chunk size into Azure AI resource in Chat Playground](/posts/artificial-intelligence/fundamentals/getting-started-with-azure-openai/querying-data-in-auzre-open-ai-studio.png)
@@ -90,7 +90,7 @@ When answering the question, the chat result will show links to the sources whic
 Another interesting feature is the ability to View the Code, this can be helpful to understand how the chat works and how the context is passed back and forth which enriches the conversation with the LLM.
 ![Azure Open AI Studio - Showing code in Azure AI Studio within the Chat Playground](/posts/artificial-intelligence/fundamentals/getting-started-with-azure-openai/showing-code-azure-ai-studio-open-ai-chat-playground.png)
 
-# Deploying the app
+## Deploying the app
 
 With the Azure AI Studio is quite easy to deploy the APP in azure, you simply need to click on "Deploy to" > "A new web app...", you can either create a new app or select an existing.
 ![Azure Open AI Studio - Showing code in Azure AI Studio within the Chat Playground](/posts/artificial-intelligence/fundamentals/getting-started-with-azure-openai/deploying-app-from-azure-ai-studio.png)
