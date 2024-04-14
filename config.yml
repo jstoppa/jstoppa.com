@@ -9,6 +9,7 @@ params:
     env: production
     description: "Juan Stoppa's personal blog"
     author: Juan Stoppa
+    title: Juan Stoppa
     ShowReadingTime: true
     defaultTheme: auto
     ShowShareButtons: true
