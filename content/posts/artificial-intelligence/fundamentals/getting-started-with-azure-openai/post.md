@@ -48,7 +48,7 @@ In the interest of this post, we'll be using the Chat functionality in the Playg
 
 ![Azure Open AI Studio - Testing the assistant](/posts/artificial-intelligence/fundamentals/getting-started-with-azure-openai/azure-open-ai-studio-chat-playground.png)
 
-To test its capability, I will use the [Microsoft Annual Report from 2023](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fc.s-microsoft.com%2Fen-us%2FCMSFiles%2F2023_Annual_Report.docx%3Fversion%3Ddfd6ff7f-0999-881d-bedf-c6d9dadab40b&wdOrigin=BROWSELINK), I have a [version in PDF format](/posts/artificial-intelligence/fundamentals/getting-started-with-azure-openai/Microsoft_2023_Annual_Report.pdf). For this I will use the Azure AI Search capability from Microsoft that allows us to store the document and get the agent to search information on it.
+To test its capability, I will use the [Microsoft Annual Report from 2023](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fc.s-microsoft.com%2Fen-us%2FCMSFiles%2F2023_Annual_Report.docx%3Fversion%3Ddfd6ff7f-0999-881d-bedf-c6d9dadab40b&wdOrigin=BROWSELINK), I have a [version in PDF format](/posts/artificial-intelligence/fundamentals/getting-started-with-azure-openai/Microsoft_2023_Annual_Report.pdf). For this I will use the Azure AI Search capability from Microsoft that allows us to store the document and get the agent to search information in it.
 
 > NOTE: To add your data in the steps below, you'll first need to create an Azure AI Search service, follow the steps in [this Microsoft article](https://learn.microsoft.com/en-us/azure/search/search-create-service-portal).
 
@@ -81,7 +81,7 @@ Once finished, the ingestion progress will start which should take a few minutes
 
 ## Querying the data
 
-You can now ask any question to the document and it should come with an answer about the document, for instance I have asked to give a summary of Microsoft 2023 Annual report and returned the following
+You can now ask any question to the agent and it should come with an answer about the document, for instance I have asked to give a summary of Microsoft 2023 Annual report and returned the following
 ![Azure Open AI Studio - Adding Keyword and chunk size into Azure AI resource in Chat Playground](/posts/artificial-intelligence/fundamentals/getting-started-with-azure-openai/querying-data-in-auzre-open-ai-studio.png)
 
 When answering the question, the chat result will show links to the sources which can be opened on the right hand side.
@@ -100,6 +100,7 @@ Once deployed, a link will show in the notification which will redirect you to t
 
 It's also possible to customise the app to your needs using environments variables in Azure, you can check the possible options in [this article](https://github.com/microsoft/sample-app-aoai-chatGPT/tree/ea7a94a7979fc62f56ffac553401d483ff6d807e?tab=readme-ov-file#environment-variables), this should allow you to change the logo and some of the wording in the page
 
-And that's all, you should have the app running now!
+And that's all, you should have the app up and running now!
 
 If you like the article, please follow me on X at [@juanstoppa](https://twitter.com/juanstoppa) where a regularly post about AI.
+F
