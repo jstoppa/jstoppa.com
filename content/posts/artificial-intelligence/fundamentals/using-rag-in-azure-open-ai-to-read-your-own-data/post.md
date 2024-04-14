@@ -1,14 +1,14 @@
 ---
 author: Juan Stoppa
-title: Creating a ChatGPT like app to read your own data using RAG in Azure Open AI
+title: Using RAG with in Azure Open AI to read your own data
 summary: Quick and easy to setup ChatGPT like app using Retrieval Augmented Generation (RAG) pattern in Azure Open AI
-date: 2024-02-07
+date: 2024-04-10
 description: In this article you'll learn how to create a ChatGPT like app using Retrieval Augmented Generation (RAG) pattern on your own data
-draft: false
+draft: true
 math: true
 tags: ['azure', 'openai', 'chatgpt', 'rag']
 cover:
-    image: 'posts/artificial-intelligence/fundamentals/creating-a-chatgpt-like-app-to-read-your-own-data-using-rag-in-azure-open-ai/azure-ai-open-ai.png'
+    image: 'posts/artificial-intelligence/fundamentals/using-rag-in-azure-open-ai-to-read-your-own-data/using-rag-azure-openai.webp'
     caption: Azure Open AI
 twitter:
     card: summary_large_image
