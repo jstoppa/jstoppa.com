@@ -34,6 +34,12 @@ hugo serve
 git submodule add --depth=1 https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
 ```
 
+NOTE: if you get an error that the module already exist, run this command
+
+```
+git rm --cached .\themes\PaperMod\
+```
+
 4. Start the submodule
 
 ```
