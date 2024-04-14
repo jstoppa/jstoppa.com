@@ -98,7 +98,7 @@ With the Azure AI Studio is quite easy to deploy the APP in azure, you simply ne
 Once deployed, a link will show in the notification which will redirect you to the app
 ![Azure Open AI Studio - App deployed from Azure AI Studio within the Chat Playground](/posts/artificial-intelligence/fundamentals/getting-started-with-azure-openai/app-deployed-to-azure-from-azure-open-ai-studio.png)
 
-It's also possible to customise the app to your needs using environments variables in Azure, you can check the possible options in (this article)[https://github.com/microsoft/sample-app-aoai-chatGPT/tree/ea7a94a7979fc62f56ffac553401d483ff6d807e?tab=readme-ov-file#environment-variables], this should allow you to change the logo and some of the wording in the page
+It's also possible to customise the app to your needs using environments variables in Azure, you can check the possible options in [this article](https://github.com/microsoft/sample-app-aoai-chatGPT/tree/ea7a94a7979fc62f56ffac553401d483ff6d807e?tab=readme-ov-file#environment-variables), this should allow you to change the logo and some of the wording in the page
 
 And that's all, you should have the app running now!
 
