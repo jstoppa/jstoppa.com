@@ -1,90 +1,90 @@
-baseURL: "https://jstoppa.com"
+baseURL: 'https://jstoppa.com'
 title: Juan Stoppa
 paginate: 8
-theme: hugo-PaperMod
+theme: ['PaperMod']
 enableInlineShortcodes: true
 googleAnalytics: G-R93JSQH2R9
 
 params:
-  env: production
-  description: "Juan Stoppa's personal blog"
-  author: Juan Stoppa
-  ShowReadingTime: true
-  defaultTheme: auto
-  ShowShareButtons: true
-  ShowCodeCopyButtons: true
-  ShowPostNavLinks: true
-  profileMode:
-    enabled: false
-    title: PaperMod
-    imageUrl: "#"
-    imageTitle: my image
-    buttons:
-      - name: Archives
-        url: archives
-      - name: Tags
-        url: tags
+    env: production
+    description: "Juan Stoppa's personal blog"
+    author: Juan Stoppa
+    ShowReadingTime: true
+    defaultTheme: auto
+    ShowShareButtons: true
+    ShowCodeCopyButtons: true
+    ShowPostNavLinks: true
+    profileMode:
+        enabled: false
+        title: PaperMod
+        imageUrl: '#'
+        imageTitle: my image
+        buttons:
+            - name: Archives
+              url: archives
+            - name: Tags
+              url: tags
 
-  homeInfoParams:
-    Title: "Welcome! \U0001F44B"
-    Content: I use this space to write about technology. I’m currently exploring the world of AI, focusing primarily on its practical implementation in real life. I try to write as often as possible, so watch this space or follow me on X at [@juanstoppa](https://twitter.com/juanstoppa)
+    homeInfoParams:
+        Title: "Welcome! \U0001F44B"
+        Content: I use this space to write about technology. I’m currently exploring the world of AI, focusing primarily on its practical implementation in real life. I try to write as often as possible, so watch this space or follow me on X at [@juanstoppa](https://twitter.com/juanstoppa)
 
-  socialIcons:
-    - name: twitter
-      url: "https://twitter.com/juanstoppa"
-    - name: linkedin
-      url: "https://uk.linkedin.com/in/jstoppa"
-    - name: github
-      url: "https://github.com/jstoppa"
-  fuseOpts:
-    isCaseSensitive: false
-    shouldSort: true
-    location: 0
-    distance: 1000
-    threshold: 0.4
-    minMatchCharLength: 0
-    keys: ["title", "permalink", "summary", "content"]
+    socialIcons:
+        - name: twitter
+          url: 'https://twitter.com/juanstoppa'
+        - name: linkedin
+          url: 'https://uk.linkedin.com/in/jstoppa'
+        - name: github
+          url: 'https://github.com/jstoppa'
+    fuseOpts:
+        isCaseSensitive: false
+        shouldSort: true
+        location: 0
+        distance: 1000
+        threshold: 0.4
+        minMatchCharLength: 0
+        keys: ['title', 'permalink', 'summary', 'content']
 
 menu:
-  main:
-    - name: Search
-      url: search/
-      weight: 10
-    - name: Archives
-      url: /archives/
-      weight: 5
-    - name: Tags
-      url: /tags/
-      weight: 10
+    main:
+        - name: Search
+          url: search/
+          weight: 10
+        - name: Archives
+          url: /archives/
+          weight: 5
+        - name: Tags
+          url: /tags/
+          weight: 10
 
 taxonomies:
-  category: categories
-  tag: tags
-  series: series
+    category: categories
+    tag: tags
+    series: series
 
 privacy:
-  vimeo:
-    disabled: false
-    simple: true
+    vimeo:
+        disabled: false
+        simple: true
 
-  twitter:
-    disabled: false
-    enableDNT: true
-    simple: true
+    twitter:
+        disabled: false
+        enableDNT: true
+        simple: true
 
-  instagram:
-    disabled: false
-    simple: true
+    instagram:
+        disabled: false
+        simple: true
 
-  youtube:
-    disabled: false
-    privacyEnhanced: true
+    youtube:
+        disabled: false
+        privacyEnhanced: true
 
 services:
-  instagram:
-    disableInlineCSS: true
-  twitter:
-    disableInlineCSS: true
+    instagram:
+        disableInlineCSS: true
+    twitter:
+        disableInlineCSS: true
 
 outputs:
     home:
