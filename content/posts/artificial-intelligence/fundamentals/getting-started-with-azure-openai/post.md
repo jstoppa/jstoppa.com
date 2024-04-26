@@ -10,6 +10,7 @@ tags: ['azure-ai', 'openai', 'chatgpt', 'azure-ai-search']
 cover:
     image: 'posts/artificial-intelligence/fundamentals/getting-started-with-azure-openai/azure-ai-open-ai.png'
     caption: Custom GPT with Azure OpenAI
+    hidden: true
 twitter:
     card: summary_large_image
     site: '@juanstoppa'

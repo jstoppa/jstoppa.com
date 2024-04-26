@@ -6,18 +6,18 @@ date: 2023-04-19
 description: A beginner's guide to get started using OpenAI and Python in Windows
 draft: false
 math: true
-tags: ["openai", "python", "chatgpt", "gpt"]
+tags: ['openai', 'python', 'chatgpt', 'gpt']
 cover:
-    image: "posts/getting_started_with_openai_in_python/openai_python.png"
+    image: 'posts/getting_started_with_openai_in_python/openai_python.png'
+    hidden: true
 twitter:
     card: summary_large_image
-    site: "@juanstoppa"
+    site: '@juanstoppa'
     title: Getting started with OpenAI in Python
     description: All you need to know to understand OpenAI and start using it
 ShowCodeCopyButtons: true
 ShowReadingTime: true
 ---
-
 
 ## Introduction
 
@@ -28,8 +28,8 @@ This is why I decided to create this beginner's guide on setting up your Windows
 
 To get started, you'll need to install Python on your Windows machine. Follow these steps:
 
-1. First of all, make sure you don't have an old version of Python already installed on your local machine, you can check that in your Program and Features in your Windows machine. 
-2. Go to the official Python website (https://www.python.org/downloads/windows/) and download the latest Python installer for Windows. 
+1. First of all, make sure you don't have an old version of Python already installed on your local machine, you can check that in your Program and Features in your Windows machine.
+2. Go to the official Python website (https://www.python.org/downloads/windows/) and download the latest Python installer for Windows.
 3. Run the installer and make sure to check the box that says "Add Python to PATH" before clicking the "Install Now" button. This will make it easier to use Python from the command prompt.
 4. Once the installation is complete, open a new command prompt and type `python --version` to verify that Python is installed correctly. You should see the version number you just installed.
 
@@ -45,24 +45,28 @@ A virtual environment is an isolated Python environment that allows you to manag
 
 1. Open a command prompt and navigate to your project directory.
 2. Run the following command to create a new virtual environment named `venv_test`:
+
 ```console
 python -m venv venv_test
 ```
+
 3. Activate the virtual environment using the appropriate command for your shell:
 
 For Command Prompt:
+
 ```console
 venv_test\Scripts\activate.bat
 ```
 
 For PowerShell:
+
 ```console
 ./venv_test/Scripts/activate.ps1
 ```
 
 Once activated, you should see `(venv_test)` at the beginning of your command prompt, indicating that you are in the virtual environment. I recorded the steps I've done in my machine
 
-![Steps to create Virtual Environment in Python](/posts/getting_started_with_openai_in_python/create_virtual_environment.gif)  
+![Steps to create Virtual Environment in Python](/posts/getting_started_with_openai_in_python/create_virtual_environment.gif)
 
 ## 4. How to Use VSCode to Debug the Code
 
@@ -77,9 +81,7 @@ Visual Studio Code (VSCode) is a popular code editor that offers powerful debugg
 7. Click on the "Run" menu > "Start Debugging" or press F5 to start debugging.
 8. VSCode will now pause at the breakpoint, allowing you to step through your code, inspect variables, and more. See example below
 
-
-![Steps to debug code in VSCode](/posts/getting_started_with_openai_in_python/debugging_code_vscode.gif)  
-
+![Steps to debug code in VSCode](/posts/getting_started_with_openai_in_python/debugging_code_vscode.gif)
 
 ## 5. Creating a Hello World App with OpenAI
 
@@ -92,11 +94,12 @@ Follow these steps:
 ```bash
 pip install openai
 ```
-2. Sign up for an API key on the OpenAI website (https://beta.openai.com/signup/), once logged in you can get your keys from (https://platform.openai.com/account/api-keys)
-![Creating an OpenAI key](/posts/getting_started_with_openai_in_python/creating_openai_key.png)
 
-3. Save your API key as an environment variable named `OPENAI_API_KEY`. 
-![Save the OPEN API Key to environment variable](/posts/getting_started_with_openai_in_python/setting_openai_key.png)  
+2. Sign up for an API key on the OpenAI website (https://beta.openai.com/signup/), once logged in you can get your keys from (https://platform.openai.com/account/api-keys)
+   ![Creating an OpenAI key](/posts/getting_started_with_openai_in_python/creating_openai_key.png)
+
+3. Save your API key as an environment variable named `OPENAI_API_KEY`.
+   ![Save the OPEN API Key to environment variable](/posts/getting_started_with_openai_in_python/setting_openai_key.png)
 
 4. Create a new Python file (e.g., openai_hello_world.py) and add the following code:
 
@@ -122,9 +125,10 @@ response = client.chat.completions.create(
 # Print the generated greeting
 print(response.choices[0].message.content)
 ```
-5. Run the openai_hello_world.py script in your virtual environment, the script will call the Completion API from OpenAI to  generate a creative greeting, it will then print the results to the console.
 
-![Running OpenAI code](/posts/getting_started_with_openai_in_python/running_openai_code.gif) 
+5. Run the openai_hello_world.py script in your virtual environment, the script will call the Completion API from OpenAI to generate a creative greeting, it will then print the results to the console.
+
+![Running OpenAI code](/posts/getting_started_with_openai_in_python/running_openai_code.gif)
 
 ## Conclusion
 
