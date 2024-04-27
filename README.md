@@ -2,7 +2,7 @@
 
 Juan Stoppa's personal blog
 
-## Development step
+## Deployment steps
 
 Deploy changes to the blog
 
