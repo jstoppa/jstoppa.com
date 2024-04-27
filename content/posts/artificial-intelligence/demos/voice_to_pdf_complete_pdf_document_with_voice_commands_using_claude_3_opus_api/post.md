@@ -29,6 +29,14 @@ The idea of the app was to:
 3. Download the completed PDF form.
 
 You can see the demo below:
+{{< rawhtml >}}
+<video width="650" height="480" style="display: block; margin: 0 auto" controls>
+
+  <source src="/posts/artificial-intelligence/demos/voice_to_pdf_complete_pdf_document_with_voice_commands_using_claude_3_opus_api/voice_to_pdf_claude_3_opus_api.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<br>
+{{< /rawhtml >}}
 
 You can find the app on github at https://github.com/jstoppa/voice_to_pdf
 
