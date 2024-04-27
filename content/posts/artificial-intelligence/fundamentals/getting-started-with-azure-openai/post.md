@@ -103,4 +103,4 @@ It's also possible to customise the app to your needs using environments variabl
 
 And that's all, you should have the app up and running now!
 
-If you like the article, please follow me on X at [@juanstoppa](https://twitter.com/juanstoppa) where a regularly post about AI.
+If you like the article, please follow me on X at [@juanstoppa](https://twitter.com/juanstoppa) where I regularly post about AI.
