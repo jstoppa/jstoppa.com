@@ -2,7 +2,7 @@
 author: Juan Stoppa
 title: DEMO - Voice to PDF - Complete PDF documents with voice commands using the Claude 3 Opus API
 summary: A quick demo app to complete PDF documents with voice commands
-date: 2024-04-25
+date: 2024-04-27
 description:
 draft: false
 math: true
