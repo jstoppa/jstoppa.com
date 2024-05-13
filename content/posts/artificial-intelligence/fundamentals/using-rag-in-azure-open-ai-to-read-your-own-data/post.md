@@ -23,10 +23,10 @@ You probably heard about all the fuss about Retrieval Augmented Generation (RAG)
 
 # Using the Azure Search OpenAI Demo
 
-Microsoft has build an example that gets the app up and runing very quickly as long as you have already setup the subscription.
+Microsoft has build an example that gets the app up and running very quickly as long as you have already setup the subscription.
 
 Before you carry on, please make sure you have followed the [prerequisites](https://learn.microsoft.com/en-us/azure/developer/python/get-started-app-chat-template?tabs=github-codespaces#prerequisites), once you've have that setup you can follow the next step which is getting the app runing.
 
 You can choose to either deploy it in [GitHub Codespaces](https://learn.microsoft.com/en-us/azure/developer/python/get-started-app-chat-template?tabs=github-codespaces#open-development-environment) or [Visual Studio Code](https://learn.microsoft.com/en-us/azure/developer/python/get-started-app-chat-template?tabs=visual-studio-code#open-development-environment), I'd personally recommend running using Visual Studio Code, it's what I followed in this example.
 
-The purpose of this article is not about installing the app but going straight to the point once the app is fully workng, ideally locally so you don't need to host it.
+The purpose of this article is not about installing the app but going straight to the point once the app is fully working, ideally locally so you don't need to host it.
