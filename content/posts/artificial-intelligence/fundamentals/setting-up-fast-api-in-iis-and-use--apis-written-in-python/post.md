@@ -88,4 +88,4 @@ Fast API also comes with swagger already installed, you can simply navigate to [
 
 You might find some recommendations to use [hypercorn](https://pgjones.gitlab.io/hypercorn/) rather than [uvicorn](https://www.uvicorn.org/), I tried that initially but I couldn't resolve an issue with socket permission, I raised it as a bug in [their GitHub repo](https://github.com/pgjones/hypercorn/issues/231).
 
-You might also find issues where the website loads and hangs forever. In that case, you'll most likely need to grant `IIS_IUSRS` read access to the folder where the app and Python are located, as mentioned in [here](https://docs.lextudio.com/blog/running-flask-web-apps-on-iis-with-httpplatformhandler/#the-infinite-loading).
+You might also find issues where the API loads and hangs forever. In that case, you'll most likely need to grant `IIS_IUSRS` read access to the folder where the app and Python are located, as mentioned in [here](https://docs.lextudio.com/blog/running-flask-web-apps-on-iis-with-httpplatformhandler/#the-infinite-loading).
