@@ -10,7 +10,7 @@ Juan Stoppa's personal blog
     git push --mirror https://github.com/jstoppa/jstoppa.com.git
 ```
 
-2. Clean repo by running the rebase.bat script
+2. Open the [jstoppa.com](https://github.com/jstoppa/jstoppa.com) repo locally and clean it by running the rebase.bat script
 
 ## Run blog locally
 
