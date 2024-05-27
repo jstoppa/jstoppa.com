@@ -2,11 +2,11 @@
 author: Juan Stoppa
 title: Setting up Fast API in IIS and run APIs in Python
 summary: This article demonstrates how to setup Fast API in Internet Information Serine (IIS) to use Python as web services.
-date: 2024-05-26
+date: 2024-05-27
 description: In this article you'll learn how to setup IIS to run Fast API and create web services using Python code.
 draft: false
 math: true
-tags: ['python', 'fast-api', 'langchain', 'openai']
+tags: ['python', 'fast-api', 'iis', 'windows']
 cover:
     image: 'posts/artificial-intelligence/fundamentals/setting-up-fast-api-in-iis-and-use--apis-written-in-python/fast-api-python-logo.webp'
     caption: Setting up Fast API in IIS and run APIs in Python
