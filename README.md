@@ -4,11 +4,13 @@ Juan Stoppa's personal blog
 
 ## Deployment steps
 
-Deploy changes to the blog
+1. Deploy changes to the blog
 
 ```
-git push --mirror https://github.com/jstoppa/jstoppa.com.git
+    git push --mirror https://github.com/jstoppa/jstoppa.com.git
 ```
+
+2. Clean repo by running the rebase.bat script
 
 ## Run blog locally
 
