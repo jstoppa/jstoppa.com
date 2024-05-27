@@ -8,7 +8,7 @@ draft: false
 math: true
 tags: ['python', 'fast-api', 'iis', 'windows']
 cover:
-    image: 'posts/artificial-intelligence/fundamentals/setting-up-fast-api-in-iis-and-use--apis-written-in-python/fast-api-python-logo.webp'
+    image: 'posts/artificial-intelligence/fundamentals/setting-up-fast-api-in-iis-and-use--apis-written-in-python/fast-api-python-logo.png'
     caption: Setting up Fast API in IIS and run APIs in Python
     hidden: true
 twitter:
