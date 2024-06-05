@@ -28,7 +28,7 @@ This article will show you how to setup an API written in Python using an amazin
 
 Follow the steps below to start with
 
-> NOTE: you'll need to have Python and PIP installed for this, follow [these steps](http://localhost:1313/posts/getting_started_with_openai_in_python/post/#1-how-to-install-python-on-windows) if you haven't installed it already
+> NOTE: you'll need to have Python and PIP installed for this, follow [these steps](https://jstoppa.com/posts/getting_started_with_openai_in_python/post/#1-how-to-install-python-on-windows) if you haven't installed it already
 
 1. Create the website in IIS as shown in the image, note I'm using the port 8080
    ![Image example for GPT-Vision](/posts/artificial-intelligence/fundamentals/setting-up-fast-api-in-iis-and-use--apis-written-in-python/fast-api-setting-up-webstie-in-iis.png)
