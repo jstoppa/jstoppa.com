@@ -4,7 +4,7 @@ title: Query your database with AI using Langchain and Gradio
 summary: This article explains how to setup Langchain and Gradio to create a ChatGPT like app to query your own database.
 date: 2024-06-04
 description: Writing a ChatGPT like app to query your database using LangChain and Gradio.
-draft: false
+draft: true
 math: true
 tags: ['langchain', 'gradio', 'python', 'chatgpt']
 cover:
@@ -18,15 +18,17 @@ twitter:
     description: Writing a ChatGPT like app to query your database using LangChain and Gradio
 ---
 
-I remember starting into the world of Machine Learning (ML) around 8 years ago, doing [Andrew Ng](https://en.wikipedia.org/wiki/Andrew_Ng)'s courses in  (Coursera)[https://www.coursera.org/specializations/machine-learning-introduction] and jumping into websites like [Kaggle](https://www.kaggle.com) to try to apply the concepts to resolve Machine Learning challenges. I personally didn't imagine that in just about 8 years we would be at a stage where we can chat with a model that will have such vast knowledge and even more, to have the ability to use tools that allows you to interact with your own databases and bringing some level or reasoning, like a proper assistant. 
+I remember starting in the world of Machine Learning (ML) around eight years ago, doing [Andrew Ng](https://en.wikipedia.org/wiki/Andrew_Ng)'s courses on [Coursera](https://www.coursera.org/specializations/machine-learning-introduction) and jumping into websites like [Kaggle](https://www.kaggle.com) to try to apply the concepts and solve Machine Learning challenges. I personally didn't imagine that in just a few years we would be at a stage where we can chat with a model that has such vast knowledge and, even more, the ability to use tools and bring some level of reasoning around it, like a proper assistant.
 
-That's exactly what we are going to explore in this article, the ability to interact with a Large Language Models (LLMs) that will use your own database to extract the data, analyse it and display it back to you
+That's what we are going to explore in this article: the ability to interact with Large Language Models (LLMs) that can use your own database to extract data, analyse it, and display it back to you, explaining what it means. This article covers the basics of how to set it up. We will write other articles to explore in more detail what is possible
 
-In this article will use two important tools:
-- [Langchain](https://www.langchain.com/): a tool to create application using LLMs 
-- [Gradio](https://www.gradio.app/): a framework to create web-based GUI that work with LLMs
+In this article will use two kwy tools:
 
-If you want to go straight to the final solution simply navigate to the git repo that contains a working solution to use LangChain to communicate to a SQLLite DB or keep reading to learn about how it's built and how it can be configured for different use cases.
+-   [Langchain](https://www.langchain.com/): a framework for building applications using Large Language Models (LLMs).
+-   [Gradio](https://www.gradio.app/): a Python library for creating easy-to-use web interfaces for machine learning models.
 
-## Langchain and SQL
-Let's 
+If you want to go straight to the final solution, simply navigate to the Git repo that contains a working solution for using LangChain to communicate with an SQLite DB. Alternatively, keep reading to learn how it's built and how it can be configured for different use cases.
+
+What I'd recommend to do if you follow along is to read my article about how to
+
+## LangChain and SQL
