@@ -145,7 +145,7 @@ iface.launch(share=True)
 
 When the entire code is executed, a new web interface will be triggered (normally in http://127.0.0.1:7860) where you can start interacting with the database
 
-Here's a demo video with a user asking questions
+Here's a demo video with a user asking questions, note that I have misspelled words like London in some prompts in purpose however the models understood the mistake and executed the queries correctly against the database.
 
 {{< rawhtml >}}
 <video width="650" height="480" style="display: block; margin: 0 auto" controls>
