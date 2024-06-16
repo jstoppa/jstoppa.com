@@ -9,7 +9,7 @@ math: true
 tags: ['langchain', 'gradio', 'python', 'chatgpt']
 cover:
     image: 'posts/artificial-intelligence/fundamentals/query-your-database-with-ai-using-langchain-and-gradio/query-your-database-with-ai.png'
-    caption: Query your database with AI
+    caption: Query your database with AI using LangChain and Gradio
     hidden: true
 twitter:
     card: summary_large_image
