@@ -2,7 +2,7 @@
 author: Juan Stoppa
 title: Query your database with AI using LangChain and Gradio
 summary: This article explains how to setup LangChain and Gradio to create a ChatGPT like app to query your own database.
-date: 2024-06-04
+date: 2024-06-16
 description: Writing a ChatGPT like app to query your database using LangChain and Gradio.
 draft: false
 math: true
@@ -144,5 +144,16 @@ iface.launch(share=True)
 ```
 
 When the entire code is executed, a new web interface will be triggered (normally in http://127.0.0.1:7860) where you can start interacting with the database
+
+Here's a demo video with a user asking questions
+
+{{< rawhtml >}}
+<video width="650" height="480" style="display: block; margin: 0 auto" controls>
+
+  <source src="/posts/artificial-intelligence/fundamentals/query-your-database-with-ai-using-langchain-and-gradio/demo_langchain_sql_gradio.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<br>
+{{< /rawhtml >}}
 
 I hope you like this tutorial, if you want to hear more follow me on X at [@juanstoppa](https://x.com/juanstoppa) where I regularly write about AI.
