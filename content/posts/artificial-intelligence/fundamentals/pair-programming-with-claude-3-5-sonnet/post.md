@@ -34,7 +34,7 @@ and simply with that, you can see the code result an even the preview which show
 
 ![Claude AI result](/posts/artificial-intelligence/fundamentals/pair-programming-with-claude-3-5-sonnet/claude-ai-result.png)
 
-worth noting that in order to activate this functionality, you first need to setup an artifact.
+worth noting that this is a new functionality just released by Anthropic called [Artifacts](https://support.anthropic.com/en/articles/9487310-what-are-artifacts-and-how-do-i-use-them), you can activate the functionality following the step I show in the graph below. 
 
 ![Claude AI switching on artifacts](/posts/artificial-intelligence/fundamentals/pair-programming-with-claude-3-5-sonnet/claude-ai-switching-on-artifacts.png)
 
