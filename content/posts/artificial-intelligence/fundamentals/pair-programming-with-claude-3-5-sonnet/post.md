@@ -1,9 +1,9 @@
 ---
 author: Juan Stoppa
 title: Pair programming with Claude 3.5 Sonnet
-summary: The new Claude 3.5 Sonnet by Anthropic continues to impress with its capabilities, in this article I explore what is capable of.
+summary: I finally got to explore Claude 3.5 Sonnet by Anthropic. In this article, I explore what it is capable of when it comes to pair programming.
 date: 2024-06-24
-description: Anthropic has released its latest model, Claude 3.5 Sonnet, I'm exploring pair programming in this article.
+description: Anthropic has released its latest model, Claude 3.5 Sonnet. In this article, I'm exploring pair programming with it.
 draft: false
 math: true
 tags: ['claude', 'claude-3-5-sonnet', 'anthropic', 'programming']
@@ -15,10 +15,10 @@ twitter:
     card: summary_large_image
     site: '@juanstoppa'
     title: Pair programming with Claude 3.5 Sonnet
-    description: The new Claude 3.5 Sonnet by Anthropic continues to impress with its capabilities, in this article I explore what is capable of.
+    description: I finally got to explore Claude 3.5 Sonnet by Anthropic. In this article, I explore what it is capable of when it comes to pair programming.
 ---
 
-It's not new that Anthropic has been always ahead of its competitors when it comes to producing better results for helping users and developers to produce working solutions, with the release of its latest Claude 3.5 Sonnet, the company has clearly step way ahead of they competitor and I demonstrating this with an example on how I did pair programming with it.
+It's not new that Anthropic has always been ahead of its competitors when it comes to producing better results for helping users and developers create working solutions. With the release of its latest Claude 3.5 Sonnet, the company has clearly stepped way ahead of its competitors. In this article, I'm demonstrating it with an example of how I did pair programming.
 
 # Starting with the basic?
 
