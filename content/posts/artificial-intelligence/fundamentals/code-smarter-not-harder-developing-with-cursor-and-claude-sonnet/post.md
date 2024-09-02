@@ -8,7 +8,7 @@ draft: false
 math: true
 tags: ['cursor', 'claude-sonnet', 'ai', 'coding']
 cover:
-    image: 'posts/artificial-intelligence/fundamentals/all-you-need-to-know-to-start-using-cursor-with-claude-sonnet/cursor-claude-sonnet.png'
+    image: 'posts/artificial-intelligence/fundamentals/code-smarter-not-harder-developing-with-cursor-and-claude-sonnet/cursor-ai-cover.png'
     caption: "Code Smarter, Not Harder: Developing with Cursor and Claude Sonnet"
     hidden: true
 twitter:
