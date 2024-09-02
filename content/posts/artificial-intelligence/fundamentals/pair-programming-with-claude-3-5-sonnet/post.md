@@ -4,7 +4,7 @@ title: Pair programming with Claude 3.5 Sonnet
 summary: I finally got to explore Claude 3.5 Sonnet by Anthropic. In this article, I explore what it is capable of when it comes to pair programming.
 date: 2024-06-24
 description: Anthropic has released its latest model, Claude 3.5 Sonnet. In this article, I'm exploring pair programming with it.
-draft: false
+draft: true
 math: true
 tags: ['claude', 'claude-3-5-sonnet', 'anthropic', 'programming']
 cover:
