@@ -6,7 +6,7 @@ date: 2024-09-22
 description: I gave ChatGPT o1 and Claude Sonnet 3.5 the same prompt to generate a SQL report for a Role Base Access Control (RBAC) system and you won't believe the results
 draft: false
 math: true
-tags: ['chatgpt-o1', 'claude-sonnet', 'ai', 'sql']
+tags: ['chatgpt-o1', 'claude-sonnet', 'rbac', 'sql']
 cover:
     image: "posts/artificial-intelligence/fundamentals/how-i-used-chatgpt-o1-and-claude-for-sql-rbac-reports-and-was-surprised-by-the-results/generating-sql-rbac-report-with-chatgpt-and-claud.png"
     caption: How I used ChatGPT o1 and Claude for generating a SQL RBAC report and was surprised by the results
