@@ -1,38 +1,38 @@
 ---
 author: Juan Stoppa
 title: How I used ChatGPT o1 and Claude for generating a SQL RBAC report and was surprised by the results
-summary: I used an LLM to generate a Role Based Access Control (RBAC) report for a user in SQL
+summary: I used an LLM to generate a Role Based Access Control (RBAC) report for a given user in SQL
 date: 2024-09-22
-description: I gave ChatGPT o1 and Claude Sonnet 3.5 the same prompt to generate a SQL report and you won't believe which one did better.
+description: I gave ChatGPT o1 and Claude Sonnet 3.5 the same prompt to generate a SQL report for a Role Base Access Control (RBAC) system and you won't believe the results
 draft: false
 math: true
 tags: ['chatgpt-o1', 'claude-sonnet', 'ai', 'sql']
 cover:
-    image: "posts/artificial-intelligence/fundamentals/how-i-used-chatgpt-o1-and-claude-for-sql-rbac-reports-and-was-surprised-by-the-results/rbac-report.png"
+    image: "posts/artificial-intelligence/fundamentals/how-i-used-chatgpt-o1-and-claude-for-sql-rbac-reports-and-was-surprised-by-the-results/generating-sql-rbac-report-with-chatgpt-and-claud.png"
     caption: How I used ChatGPT o1 and Claude for generating a SQL RBAC report and was surprised by the results
     hidden: true
 twitter:
     card: summary_large_image
     site: "@juanstoppa"
     title: How I used ChatGPT o1 and Claude for generating a SQL RBAC report and was surprised by the results
-    description: I gave ChatGPT o1 and Claude Sonnet 3.5 the same prompt to generate a SQL report and you won't believe which one did better.
+    description: I gave ChatGPT o1 and Claude Sonnet 3.5 the same prompt to generate a SQL report for a Role Base Access Control (RBAC) system and you won't believe the results.
 ---
 
 One of the most comprehensive Role Based Access Control (RBAC) I ever worked with is the one that comes with [Microsoft Dynamics 365](https://learn.microsoft.com/en-us/dynamics365/customerengagement/on-premises/developer/security-dev/how-role-based-security-control-access-entities?view=op-9-1), the security model is very granular and embedded deep in the SQL tables making it very hard to understand the access permissions for a given user but at the same time it's very powerful and flexible, giving the ability to model any security structure you can imagine.
 
-Microsoft Dynamics 365 has the concept that records in the SQL table are owned by a user or a team. Access to these records is given through security roles which can be assigned to a user or team, these security roles define what actions a user can perform on a record, such as reading, creating, deleting, assigning, etc. At the same time, a user can belong to one or multiple teams inheriting all the security permissions, this makes it extremely hard to understand the access permissions for a given user. You can see below a screenshot of the interface to configure the security role
+Microsoft Dynamics 365 has the concept that records in the SQL table are owned by a user or a team. Access to these records is given through security roles which can be assigned to a user or team, these security roles define what actions a user can perform on a record, such as reading, creating, deleting, assigning, etc. At the same time, a user can belong to one or multiple teams inheriting all the security permissions, this makes it extremely hard to understand the access permissions for a given user. You can see below a screenshot of the interface to configure a single security role.
 
 ![Dynamics 365 Security Roles](/posts/artificial-intelligence/fundamentals/how-i-used-chatgpt-o1-and-claude-for-sql-rbac-reports-and-was-surprised-by-the-results/dynamics-365-security-roles.png)    
 
 
-Dynamics 365 provides an API to check the access for a single table and access type but I've never seen anyone that knows the deep details of how the tables in the database provide this access so I was wondering if [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/) would be able to provide such an obscure and complex report. The whole iteration was pretty fascinating because both LLMs understood the system much more than I expected, there is very little documentation on how the tables work and still the LLMs were able to provide a lot or more information you would get in any Microsoft documentation.
+Dynamics 365 provides an API to check the access for a single table and access type but I've never seen anyone that knows the deep details of how the tables in the database provide this access so I was wondering if [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/) would be able to provide a report for such an obscure and complex area I've never seen anyone being able to crack. The whole iteration was pretty fascinating because both LLMs understood the system much more than I expected, there is very little documentation on how the tables work and still the LLMs were able to provide a lot of information that would be hard to find in any Microsoft documentation.
 
 # Generating the prompt
 
-I started by generating a prompt that would ask for the information I needed, I used the following prompt
+I started by generating a prompt that asks for the information I needed, I used the following prompt:
 
 ```prompts
-Generate a SQL query for Microsoft Dynamics CRM that retrieves all security privileges for each entity accessible to a specific user. 
+Generate a SQL query for Microsoft Dynamics 365 that retrieves all security privileges for each entity accessible to a specific user. 
 The query should:
 1. Accept a username as an input parameter
 2. Include all entities the user has access to
@@ -56,11 +56,15 @@ Account         | Organization  | User          | No Access     | Parent: Child 
 Activity        | User          | User          | User          | No Access     | Business Unit | Organization  | User Contact  | Organization 
 Connection      | User          | User          | User          | No Access     | No Access     | Parent: Child | Parent: Child | Organization 
 ```
-I think this prompt give a pretty good idea of what I needed, it's a bit complex what I'm asking the model but I was really hoping to get some super human results
+I think this prompt gives a pretty good idea of what I needed, it's a bit complex what I'm asking the model to do but I was really hoping to get some super human results.
 
 # Testing the prompt on Claude and ChatGPT
 
-Starting with Claude, this was the first result:
+Now with the prompt ready I can test it by asking the same to Claude and ChatGPT
+
+## Claude first attempt 
+
+Starting with [Claude Sonnet 3.5](https://www.anthropic.com/news/claude-3-5-sonnet), this was the first result:
 
 ```SQL
 -- Declare input parameter for username
@@ -122,10 +126,17 @@ LEFT JOIN AccessLevels al ON up.MaxPrivilegeDepthMask & al.Mask = al.Mask
 GROUP BY up.EntityName
 ORDER BY up.EntityName;
 ```
-pretty impressive with the initial results, the model definitely knows about the table structure in  Dynamics 365 but when running the query in the SQL Server you can see Claude didn't quite get the table names right.
-For example: it knows about the table `Privilege` which does exist in the DB and it also knows that the names of the privileges start with the word `prv` but the column `PrivilegeName` doesn't exist, the column is called `Name`. 
+pretty impressive with the initial results, the model definitely knows about the table structure in Microsoft Dynamics 365 but when running the query in the SQL Server you can see Claude didn't quite get the table names right.
 
 ![Claude SQL Query](/posts/artificial-intelligence/fundamentals/how-i-used-chatgpt-o1-and-claude-for-sql-rbac-reports-and-was-surprised-by-the-results/claude-first-attempt-query.png)
+The were a few issues:
+- it references a table called `SecurityRole` which doesn't exist, I suspect the name is `TeamRoles`
+- it tries to use a table called `EntityType` which again doesn't exist, it's probably trying to use`EntityView`
+- it knows about the table `Privilege` which does exist in the DB but the column `PrivilegeName` doesn't exist, the column is called `Name` 
+
+Once I made the changes, the query worked but it didn't return any result, it probably needs a bit more thought on how the tables are linked to each other
+
+## ChatGPT first attempt 
 
 I then tried the same prompt on [ChatGPT o1-preview](https://openai.com/index/introducing-openai-o1-preview/) and got the following result:
 
@@ -235,10 +246,46 @@ PIVOT
 ) AS PivotTable
 ORDER BY EntityName;
 ```
-The impressive result here is that ChatGPT o1-preview got the table names and columns right on first try! I can see it knows more about Dynamics 365 table structure than Claude did however the query doesn't return any results, it probably need a bit more thought on how the tables are linked to each other.
+It took 47 seconds for ChatGPT o1-review to generate a result, the query returned wasn't valid but the structure seems to be much more comprehensive than Claude's query and the table and columns names were almost correct. 
+
+The were only two issues in the query:
+- it referenced a table `RolePrivilege` which is called `RolePrivilegesBase` instead
+- it referenced a column name `DisplayName` in the `EntiyView` table which doesn't exist, it should be `OriginalLocalizedName`
+
+After changing the table and column names, the query worked but it didn't return any result
 
 ![ChatGPT SQL Query](/posts/artificial-intelligence/fundamentals/how-i-used-chatgpt-o1-and-claude-for-sql-rbac-reports-and-was-surprised-by-the-results/chatgpt-first-attempt-query.png)
 
-# Running the query in SQL Server
+## Claude further attempts
 
-I then tried to run the query in SQL Server and it failed miserably, the main reason is that the query is too slow, it takes too long to run.
+I played back the modified query to Claude, it gave some reasonable comments but then it went back to generate queries referencing the table names that I previously highlighted as incorrect.
+
+I tried a few back and forward prompts but Claude kept going into a loop without offering a valid query. I eventually asked to use [Chain of Thought prompting](https://arxiv.org/abs/2201.11903) which helped because Claude started to systematically ask me questions about the table structure to validate the query that is being generated.
+
+![Claude's Chain of Thought prompting](/posts/artificial-intelligence/fundamentals/how-i-used-chatgpt-o1-and-claude-for-sql-rbac-reports-and-was-surprised-by-the-results/claude-chain-of-thought.png)
+
+This unfortunately didn't lead to a valid query either, Claude seems to get lost with so many details. I didn't try to start a completely new conversation with the best query generated but I suspect it will still struggle to generate a valid query.
+
+## ChatGPT further attempts
+
+I played back the modified query to ChatGPT o1, it gave some reasonable comments on how we can move forward. I like because this new model seems to be implementing chain of thought prompting internally, it goes step by step and tries to understand what went wrong by asking me to gather more information.
+
+![ChatGPT's Chain of Thought prompting](/posts/artificial-intelligence/fundamentals/how-i-used-chatgpt-o1-and-claude-for-sql-rbac-reports-and-was-surprised-by-the-results/chatgpt-chain-of-thought.png)
+
+What I also like about ChatGPT is that it gives very clear steps on what to do next, using a pattern like if Yes do this, if No do that.
+
+![ChatGPT's Chain of Thought prompting with next steps](/posts/artificial-intelligence/fundamentals/how-i-used-chatgpt-o1-and-claude-for-sql-rbac-reports-and-was-surprised-by-the-results/chatgpt-chain-of-thought-next-steps.png)
+
+I went back and forth providing as much information as possible, each response takes close to a minute to generate but their findings are very insightful and doesn't seem to go into a loop like what happens with Claude.
+
+# Conclusion
+
+Both models are very impressive but neither manage to generate a valid report, I'd say that ChatGPT o1 did better than Claude Sonnet 3.5 but both are still very far from being able to generate a valid SQL report just by reading the documentation.
+
+ChatGPT got very close and I think I need to spend more time answering all the questions it asks, I think the advantage is that ChatGPT doesn't seem to go into a loop like Claude does when it has too many details and is able to break down the problem in smaller steps, something that Claude doesn't do that well at least for this particular task.
+
+You can see the full conversation for both models in 
+- Claude - I don't seem to be able to share the entire conversation, I thought Claude was able, I'll update the blog once I find it
+- ChatGPT - https://chatgpt.com/share/66f01a99-e63c-8003-84f6-544c34e9d11b
+
+I hope you like this article, if you want to hear more follow me on X at [@juanstoppa](https://x.com/juanstoppa) where I regularly post about AI 
