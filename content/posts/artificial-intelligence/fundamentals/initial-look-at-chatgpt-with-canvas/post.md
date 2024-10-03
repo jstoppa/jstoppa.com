@@ -1,20 +1,20 @@
 ---
 author: Juan Stoppa
-title: Initial look at ChatGPT with Canvas
+title: Intiial look at ChatGPT with Canvas
 summary: OpenAI released Canvas just a day after DevDay 2024 and it really feels like a game changer for writing code.
-date: 2024-10-04
+date: 2024-10-03
 description: After many months of waiting, OpenAI is finally rolling out new features and it really looks like their priority now is developers.
 draft: false
 math: true
 tags: ['chatgpt', 'openai', 'canvas', 'ai']
 cover:
-    image: "posts/artificial-intelligence/fundamentals/how-i-used-chatgpt-o1-and-claude-for-sql-rbac-reports-and-was-surprised-by-the-results/generating-sql-rbac-report-with-chatgpt-and-claud.png"
+    image: "/posts/artificial-intelligence/fundamentals/initial-look-at-chatgpt-with-canvas/chatgpt-with-canvas-cover.png"
     caption: OpenAI released Canvas just a day after DevDay 2024 and it really feels like a game changer for writing code
     hidden: true
 twitter:
     card: summary_large_image
     site: "@juanstoppa"
-    title: Initial look at OpenAI Canvas
+    title: Intiial look at ChatGPT with Canvas
     description: After many months of waiting, OpenAI is finally rolling out new features and it really looks like their priority now is developers.
 ---
 
@@ -73,4 +73,5 @@ Here what each action does:
 This is a very early beta mode but still shows how OpenAI is focusing in simplicity and making things easier to use for everyone, not only devleopers. The icons on the right hand side to comment, add logs, fix bugs, port to another language and reivew the code are very handy, they are probably the most used actions when writting code. 
 
 Once again we see Open AI focusing on making things that are intuitive and easy to use. This editor also confirms what I've seen in the OpenAI DevDay, the company seems to be shifting into focusing on making tools to write code, the market for this is huge and where most companies are going to invest in the next few years, from that perspective I think OpenAI is taking the right direction.
+
 I hope you like this article, if you want to hear more follow me on X at [@juanstoppa](https://x.com/juanstoppa) where I regularly post about AI.
