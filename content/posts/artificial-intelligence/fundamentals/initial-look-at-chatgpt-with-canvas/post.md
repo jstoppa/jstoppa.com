@@ -1,7 +1,7 @@
 ---
 author: Juan Stoppa
 title: Intial look at ChatGPT with Canvas
-summary: OpenAI released Canvas just a day after DevDay 2024 and it really feels like a game changer for writing code.
+summary: OpenAI released ChatGPT Canvas just a day after DevDay 2024 and it really feels like they are heading in the right direction.
 date: 2024-10-03
 description: After many months of waiting, OpenAI is finally rolling out new features and it really looks like their priority now is developers.
 draft: false
