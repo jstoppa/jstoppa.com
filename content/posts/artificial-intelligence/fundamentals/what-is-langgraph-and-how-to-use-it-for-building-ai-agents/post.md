@@ -8,7 +8,7 @@ draft: false
 math: true
 tags: ['langgraph', 'ai-agents', 'langchain', 'python']
 cover:
-    image: 'posts/artificial-intelligence/fundamentals/what-is-langgraph-and-how-to-use-it-for-building-ai-agents/langgraph-agents-cover'
+    image: 'posts/artificial-intelligence/fundamentals/what-is-langgraph-and-how-to-use-it-for-building-ai-agents/langgraph-agents-cover.png'
     caption: "What is LangGraph and How to Use It for Building AI Agents"
     hidden: true
 twitter:
