@@ -26,13 +26,14 @@ This really got me into looking at MCPs, particularly its integration with a Lar
 
 ## What is MCP?
 The Model Context Protocol (MCP), developed by [Anthropic](https://www.anthropic.com/news/model-context-protocol), is a standard that enables AI models to interact with external systems. It works using a client-server model: servers provide resources or tools and clients (such as AI models) access them. 
-In this guide I'm building a server that provides a list of task titles and uses an LLM to produce detailed descriptions for those tasks.
 
 One important concept to understand is how these MCP servers provide functionality to their clients, they do it by exposing three different interfaces:
 
 - **Prompts**: structured instructions that guide the LLM in generating responses. These act as templates that clients can use to standardise or influence outputs based on their requirements.
 - **Tools**: functions that can be called by the client to perform specific operations beyond text generation. These may include API calls, database queries, calculations or interactions with external systems.
 - **Resources**: functions designed to provide structured data or contextual information to the LLM. They supply relevant facts, references or domain-specific knowledge that help the model generate more informed responses.
+
+In this guide I'm building an MCP server that provides a list of tasks (resource), the ability add tasks (tool) and a structured template with the information the LLM can use to generate a description for any given task title (prompt).
 
 ## The Server Code
 Here's the complete server code, written in Python using the [modelcontextprotocol](https://github.com/modelcontextprotocol) library and [Hugging Face's Transformers](https://huggingface.co/docs/transformers/index) for LLM integration:
