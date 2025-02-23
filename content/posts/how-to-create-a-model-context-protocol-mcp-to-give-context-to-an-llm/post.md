@@ -22,7 +22,7 @@ I recently noticed a post on [𝕏](https://x.com) from [Jeff Weinstein](https:/
 
 {{< x user="jeff_weinstein" id="1893064226899665056" class="center">}}
 
-This really got me into look at MCPs, particularly its integration with a Large Language Model (LLM). To do this, I created an MCP server that uses Hugging Face's GPT-2 to generate task descriptions (not the best model for this task but it's just an example).
+This really got me into looking at MCPs, particularly its integration with a Large Language Model (LLM). To do this, I created an MCP server and a client to communicate to each other, this is a very simple example but still gives the foundation. Worth metioning that LLMs like ChatGPT or Claude are not very familiar with it since it's very new.  
 
 ## What is MCP?
 The Model Context Protocol (MCP), developed by [Anthropic](https://www.anthropic.com/news/model-context-protocol), is a standard that enables AI models to interact with external systems. It works using a client-server model: servers provide resources or tools and clients (such as AI models) access them. 
