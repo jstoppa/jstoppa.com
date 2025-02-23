@@ -2,7 +2,7 @@
 author: Juan Stoppa
 title: "How to Create a Model Context Protocol (MCP) to give context to an LLM"
 summary: Learn how to build a Model Context Protocol (MCP) server and client to give context to an LLM.
-date: 2025-02-22
+date: 2025-02-23
 description: A step-by-step guide for creating MCP server and client that gives context to an LLM to generate task descriptions.
 draft: false
 math: true
