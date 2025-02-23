@@ -36,7 +36,7 @@ One important concept to understand is how these MCP servers provide functionali
 In this guide I'm building an MCP server that provides a list of tasks (resource), the ability add tasks (tool) and a structured template with the information the LLM can use to generate a description for any given task title (prompt).
 
 ## The Server Code
-Here's the complete server code, written in Python using the [modelcontextprotocol](https://github.com/modelcontextprotocol) library and [Hugging Face's Transformers](https://huggingface.co/docs/transformers/index) for LLM integration:
+Here's the complete server code, written in Python using the FastMCP library described in the [modelcontextprotocol](https://github.com/modelcontextprotocol) library 
 
 ```python
 from mcp.server.fastmcp import FastMCP
