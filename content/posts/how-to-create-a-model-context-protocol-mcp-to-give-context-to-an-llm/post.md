@@ -22,11 +22,10 @@ I recently noticed a post on [𝕏](https://x.com) from [Jeff Weinstein](https:/
 
 {{< x user="jeff_weinstein" id="1893064226899665056" class="center">}}
 
-This really got me into look at MCPs, particularly its integration with a Large Language Model (LLM). To do this, I created an MCP server that uses Hugging Face's GPT-2 to generate task descriptions (not the best model for this task but it's just an example).
+This really got me into looking at MCPs, particularly its integration with a Large Language Model (LLM). To do this, I created an MCP server and a client to communicate to each other, this is a very simple example but still gives the foundation. Worth metioning that LLMs like ChatGPT or Claude are not very familiar with it since it's very new.  
 
 ## What is MCP?
 The Model Context Protocol (MCP), developed by [Anthropic](https://www.anthropic.com/news/model-context-protocol), is a standard that enables AI models to interact with external systems. It works using a client-server model: servers provide resources or tools and clients (such as AI models) access them. 
-In this guide I'm building a server that provides a list of task titles and uses an LLM to produce detailed descriptions for those tasks.
 
 One important concept to understand is how these MCP servers provide functionality to their clients, they do it by exposing three different interfaces:
 
@@ -34,8 +33,10 @@ One important concept to understand is how these MCP servers provide functionali
 - **Tools**: functions that can be called by the client to perform specific operations beyond text generation. These may include API calls, database queries, calculations or interactions with external systems.
 - **Resources**: functions designed to provide structured data or contextual information to the LLM. They supply relevant facts, references or domain-specific knowledge that help the model generate more informed responses.
 
+In this guide I'm building an MCP server that provides a list of tasks (resource), the ability add tasks (tool) and a structured template with the information the LLM can use to generate a description for any given task title (prompt).
+
 ## The Server Code
-Here's the complete server code, written in Python using the [modelcontextprotocol](https://github.com/modelcontextprotocol) library and [Hugging Face's Transformers](https://huggingface.co/docs/transformers/index) for LLM integration:
+Here's the complete server code, written in Python using the FastMCP library described in the [modelcontextprotocol](https://github.com/modelcontextprotocol) library 
 
 ```python
 from mcp.server.fastmcp import FastMCP
