@@ -419,7 +419,7 @@ runServer().catch((error) => {
 });
 ```
 
-Anyway, this exercise really helped me understand MCP servers and how they work. I hope it clarifies many concepts for you too.
+This exercise helped me better understand MCP servers and how they work, I hope it clarifies many concepts for you too. I can already see some compelling use cases such as driving LLMs to perform tasks through specific instructions driving by MCP servers. One particularly promising area is API integrations, where providers could develop MCP servers to give structured context to LLMs and the API consumers could use LLMs to write the integration with Claude or Cursor.
 
 If you liked this post, you can follow me on [𝕏](https://x.com/juanstoppa) for more content like this.
 
