@@ -3,6 +3,7 @@ title: Juan Stoppa
 theme: ['PaperMod']
 enableInlineShortcodes: true
 googleAnalytics: G-R93JSQH2R9
+enableRobotsTXT: true
 
 params:
     env: production
@@ -94,6 +95,7 @@ outputs:
         - HTML
         - RSS
         - JSON
+        - robots.txt
 
 pagination:
   pagerSize: 8
