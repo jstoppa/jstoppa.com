@@ -4,6 +4,7 @@ theme: ['PaperMod']
 enableInlineShortcodes: true
 googleAnalytics: G-R93JSQH2R9
 enableRobotsTXT: true
+languageCode: en-gb
 
 params:
     env: production
@@ -66,6 +67,10 @@ taxonomies:
     category: categories
     tag: tags
     series: series
+
+sitemap:
+    changefreq: weekly
+    filename: sitemap.xml
 
 privacy:
     vimeo:
