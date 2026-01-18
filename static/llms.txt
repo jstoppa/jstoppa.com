@@ -1,0 +1,64 @@
+# Juan Stoppa - Technical Blog
+
+> A technical blog by Juan Stoppa focusing on AI implementation, LLM development, and practical software engineering tutorials.
+
+## About
+
+Juan Stoppa is a software engineer based in the UK who writes hands-on technical guides about artificial intelligence and modern development practices. The content focuses on practical implementation rather than theory, with working code examples.
+
+## Primary Topics
+
+### Model Context Protocol (MCP)
+- How to create MCP servers for LLM context
+- How MCP servers work in Claude and Cursor
+- Practical MCP implementation guides
+
+### LLM Development & Integration
+- Getting started with OpenAI APIs in Python
+- Azure OpenAI setup and configuration
+- RAG (Retrieval Augmented Generation) implementation
+- Text embeddings and vector search
+- LangChain and LangGraph for AI agents
+- Database querying with AI using LangChain
+
+### AI-Assisted Development
+- Pair programming with Claude 3.5 Sonnet
+- Using Cursor IDE with Claude
+- ChatGPT Canvas for development
+- Comparing ChatGPT and Claude for coding tasks
+
+### Practical AI Applications
+- Voice-to-PDF document generation using Claude API
+- GPT Vision API for image and video analysis
+- FastAPI deployment on IIS for Python APIs
+
+### Open Banking
+- What is Open Banking and how it works
+- Open Banking API demonstrations
+
+## Content Format
+
+All articles include:
+- Step-by-step instructions
+- Working code examples (Python, JavaScript)
+- Screenshots and diagrams
+- Links to source code repositories
+
+## URLs
+
+- Website: https://jstoppa.com
+- All posts: https://jstoppa.com/posts/
+- RSS feed: https://jstoppa.com/index.xml
+- Sitemap: https://jstoppa.com/sitemap.xml
+
+## Author
+
+- Name: Juan Stoppa
+- Twitter/X: @juanstoppa
+- LinkedIn: https://uk.linkedin.com/in/jstoppa
+- GitHub: https://github.com/jstoppa
+
+## Crawling
+
+AI crawlers are welcome. See robots.txt for details.
+Content is available under standard web terms for training and retrieval purposes.

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        canvas {
+            image-rendering: pixelated;
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #111827;
+        }
+        #gameCanvas {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex flex-col items-center justify-center min-h-screen">
+        <h1 class="text-4xl font-bold text-white mb-8">Tetris</h1>
+        <div class="relative">
+            <canvas id="gameCanvas" class="border-2 border-gray-700 bg-gray-800"></canvas>
+            <div id="gameOver" class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 hidden">
+                <p class="text-white text-2xl mb-4">Game Over!</p>
+                <button id="restartButton" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                    Play Again
+                </button>
+            </div>
+        </div>
+        <div id="score" class="mt-4 text-white">
+            Score: 0
+        </div>
+    </div>
+    <script src="tetris.js" defer></script>
+</body>
+</html> 
