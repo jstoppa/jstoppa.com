@@ -3,7 +3,7 @@ author: Juan Stoppa
 title: Getting started with OpenAI using Python in Windows
 summary: A beginner's guide to install Python and start using OpenAI in Windows
 date: 2023-04-19
-description: A beginner's guide to get started using OpenAI and Python in Windows
+description: A beginner's guide to installing Python on Windows, setting up virtual environments, and building your first OpenAI GPT application with working code examples.
 draft: false
 math: true
 tags: ['openai', 'python', 'chatgpt', 'gpt']
@@ -14,7 +14,7 @@ twitter:
     card: summary_large_image
     site: '@juanstoppa'
     title: Getting started with OpenAI in Python
-    description: All you need to know to understand OpenAI and start using it
+    description: A beginner's guide to installing Python on Windows and building your first OpenAI GPT application with working code examples.
 ShowCodeCopyButtons: true
 ShowReadingTime: true
 ---

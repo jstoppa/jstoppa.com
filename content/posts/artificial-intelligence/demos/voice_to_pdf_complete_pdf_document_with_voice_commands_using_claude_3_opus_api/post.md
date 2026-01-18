@@ -3,7 +3,7 @@ author: Juan Stoppa
 title: DEMO - Voice to PDF - Complete PDF documents with voice commands using the Claude 3 Opus API
 summary: A quick demo app to complete PDF documents with voice commands
 date: 2024-04-27
-description:
+description: Learn how to build a voice-controlled PDF form filler using Claude 3 Opus API, Web Speech API, and JavaScript. Includes full source code and working demo.
 draft: false
 math: true
 tags: ['claude-3', 'prompt-engineering', 'speech-to-text', 'pdf-handling']
@@ -14,8 +14,8 @@ cover:
 twitter:
     card: summary_large_image
     site: '@juanstoppa'
-    title: TBC
-    description: TBC
+    title: Voice to PDF - Complete PDF documents with voice commands using Claude 3 Opus API
+    description: Learn how to build a voice-controlled PDF form filler using Claude 3 Opus API, Web Speech API, and JavaScript.
 ---
 
 I spent some time last weekend exploring the [Claude 3 Opus API](https://www.anthropic.com/news/claude-3-family) from [Anthropic](https://www.anthropic.com/) since I have heard so many comments about its potential which appears to surpass ChatGPT, especially when tasked with resolving complex problems such as writing code.

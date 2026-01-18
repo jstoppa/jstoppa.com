@@ -3,7 +3,7 @@ author: Juan Stoppa
 title: Open Banking - what is it and how does it work?
 summary: Open Banking has become the latest buzzword in FinTech, it's set to revolutionise the financial industry but what is it and how does it work?
 date: 2020-11-19
-description: All you need to know to understand open banking and start using it.
+description: Learn what Open Banking is, how PSD2 regulations work, and how to integrate with banking APIs to access financial data securely. Includes practical examples.
 draft: false
 math: true
 tags: ['openbanking', 'fintech', 'api', 'technology']
@@ -15,7 +15,7 @@ twitter:
     card: summary_large_image
     site: '@juanstoppa'
     title: Open Banking - what is it and how does it work?
-    description: All you need to know to understand open banking and start using it
+    description: Learn what Open Banking is, how PSD2 regulations work, and how to integrate with banking APIs to access financial data securely.
 ---
 
 Open Banking has become the latest buzzword in FinTech, it's set to revolutionise the financial industry but what is it and how does it work? This article covers all the basics and gives you some insights on how to use it.
