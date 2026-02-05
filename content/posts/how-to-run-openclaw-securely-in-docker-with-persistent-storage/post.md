@@ -24,37 +24,41 @@ After some experimentation (and a few security scares), I got it working securel
 
 ## Why Context Portability Matters
 
-There is another reason I chose this setup that goes beyond security.
+There's another reason I chose this setup that goes beyond security.
 
 I wanted my AI assistant to be portable.
 
 Think about it. Your AI assistant builds context over time. It learns your preferences, remembers past conversations, stores useful information. That context is valuable. Losing it means starting from scratch.
 
-If that context lives on a single machine, you are locked in. Your laptop breaks, you want to switch to a desktop, or you need to work from a different location. Suddenly your assistant is stuck somewhere else.
+If that context lives on a single machine, you're locked in. Your laptop breaks, you want to switch to a desktop, or you need to work from a different location. Suddenly your assistant is stuck somewhere else.
 
 By running OpenClaw in Docker with all data in a single folder, I can move my entire assistant to another machine in minutes. Copy the folder, run Docker, done. Same context, same memory, same configuration.
 
-This is not just about backup. It is about freedom. I do not want to depend on a single piece of hardware to access my AI assistant. I want to be able to spin it up wherever I need it.
+This isn't just about backup. It's about freedom. I don't want to depend on a single piece of hardware to access my AI assistant. I want to be able to spin it up wherever I need it.
 
 The Docker setup makes this trivial. Everything lives in the `data/` directory. Move that folder and you move your assistant.
 
 ## Why Security Matters for AI Assistants
 
-Before diving in, let's understand the risks. OpenClaw can:
+Before diving in, let's understand the risks.
+
+OpenClaw can:
 - **Read files** on the system it has access to
 - **Execute actions** if tools are enabled
 - **Receive messages** from external channels (Telegram, WhatsApp, etc.)
 - **Store conversation history** including potentially sensitive information
 
 A misconfigured instance could allow:
-- Unauthorized users to interact with your AI and potentially extract information
+- Unauthorised users interacting with your AI and potentially extracting information
 - Prompt injection attacks that trick the AI into performing unintended actions
 - Exposure of API keys, tokens, and personal data
 - Access to your local network if the gateway is exposed
 
 ## What is OpenClaw?
 
-OpenClaw is an open-source personal AI assistant that can connect to various messaging channels like Telegram, WhatsApp, Discord, and more. It provides a web-based control UI and uses LLMs (like GPT or Claude) to power conversations. The project was created by Austrian developer Peter Steinberger and has become one of the fastest-growing GitHub repositories.
+OpenClaw is an open-source personal AI assistant that connects to various messaging channels like Telegram, WhatsApp, Discord, and more. It provides a web-based control UI and uses LLMs (like GPT or Claude) to power conversations. The project was created by Austrian developer Peter Steinberger and has become one of the fastest-growing GitHub repositories.
+
+I wanted to try it out and see if it could become my daily driver for managing tasks through Telegram.
 
 ## Why Docker?
 
@@ -66,7 +70,7 @@ Running OpenClaw in Docker provides several practical benefits:
 - **Data Control**: All data stays in a local folder you control and can audit
 - **Easy Updates**: Rebuild the container to get security patches
 
-## The Secure Setup
+## The Setup
 
 Here's the complete structure we'll create:
 
@@ -141,6 +145,8 @@ services:
 - The container runs as `node` user (UID 1000), not root
 - Volume mount is limited to `./data` only - the container can't access your entire filesystem
 - Ports are only exposed to your local network by default
+
+This is the part I really like. All the context stays in one folder.
 
 ## Step 2: Create the Environment File (Secrets Management)
 
@@ -235,6 +241,8 @@ The onboarding wizard will ask you to:
 
 ## Step 5: Fix the Docker Pairing Issue
 
+This one took me a while to figure out.
+
 If you see "disconnected (1008): pairing required" when accessing the web UI, this is a [known Docker networking issue](https://github.com/openclaw/openclaw/issues/4941). Docker's NAT makes connections appear external, triggering the pairing requirement.
 
 Fix it by editing `data/openclaw.json` and adding the `controlUi` section:
@@ -255,7 +263,9 @@ Then restart: `docker compose restart openclaw-gateway`
 
 ## Step 6: Secure Telegram Configuration
 
-This is where many people get security wrong. By default, if you just enable Telegram without restrictions, **anyone who finds your bot can chat with it**.
+This is where many people get security wrong.
+
+By default, if you just enable Telegram without restrictions, **anyone who finds your bot can chat with it**. I learned this the hard way during testing.
 
 ### How Telegram Bot Connectivity Works
 
@@ -353,7 +363,7 @@ docker compose run --rm openclaw-cli security audit --deep
 
 ## Understanding the Data Structure
 
-All your data is stored in the `data/` directory:
+This is the key part for portability. All your data is stored in the `data/` directory:
 
 | Location | Contains | Sensitivity |
 |----------|----------|-------------|
@@ -365,7 +375,7 @@ All your data is stored in the `data/` directory:
 
 ### How Memory Works
 
-OpenClaw has three layers of memory:
+This is what makes OpenClaw interesting. It has three layers of memory:
 
 1. **Session logs** (`.jsonl` files): Complete conversation history
 2. **Daily summaries** (`.md` files): Human-readable daily notes
@@ -492,6 +502,8 @@ This setup gives you a portable and secure OpenClaw instance running in Docker w
 - **Gitignored secrets** that won't accidentally leak
 
 The real value here is not being tied to a single machine. Your AI assistant's context is yours. You should be able to take it with you.
+
+I've been running this setup for a few weeks now and it works well. I can switch between my laptop and desktop without losing any context.
 
 Security is still important. Regularly:
 - Run `openclaw security audit --deep`
