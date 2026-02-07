@@ -18,8 +18,11 @@ twitter:
     description: A guide to running OpenClaw in Docker with portable context. Move your AI assistant between machines without losing memory.
 ---
 
-I recently wanted to set up [OpenClaw](https://openclaw.ai/) (formerly known as [ClawdBot and Moltbot](https://www.forbes.com/sites/kateoflahertyuk/2026/02/06/what-is-openclaw-formerly-moltbot--everything-you-need-to-know/)) and explore exactly what it can do, I heard [great things about it](https://www.digitalocean.com/resources/articles/what-is-openclaw) but also [no so good](https://www.reddit.com/r/cybersecurity/comments/1qwrwsh/openclaw_is_terrifying_and_the_clawhub_ecosystem/) especially around the security risks. The bit that really interested the most is how it suppose to [handle context and memory really well](https://manthanguptaa.in/posts/clawdbot_memory/) and wanted to prove it out myself
-One of the most interesting features of OpenClaw is that it handles context and memory in their file system, it doesn't use use sqllite for finding context but it feels to me it's much better and efficient way to store context, I also like the ide that you own your own data, the bot is generating context as you interact with it, context engineering will probably be the biggest part of the next challenge, it's not longer so important that important how smart adn clever your model are, the key part now will be how you manage the vast amount of context you generate as you interact with the agents, and how to make it effective so remembers what it's absolutely necessary rather than keep forgetting things 
+I recently wanted to set up [OpenClaw](https://openclaw.ai/) (formerly known as [ClawdBot and Moltbot](https://www.forbes.com/sites/kateoflahertyuk/2026/02/06/what-is-openclaw-formerly-moltbot--everything-you-need-to-know/)) and explore exactly what it can do. I heard [great things about it](https://www.digitalocean.com/resources/articles/what-is-openclaw) but also [not so good](https://www.reddit.com/r/cybersecurity/comments/1qwrwsh/openclaw_is_terrifying_and_the_clawhub_ecosystem/), especially around the security risks. The bit that really interested me the most is how it's supposed to [handle context and memory really well](https://manthanguptaa.in/posts/clawdbot_memory/). I wanted to prove it out myself.
+
+One of the most interesting features of OpenClaw is that it handles context and memory in the file system. It doesn't use SQLite for finding context but it feels to me like a much better and more efficient way to store context. I also like the idea that you own your own data. The bot generates context as you interact with it.
+
+Context engineering will probably be the biggest challenge going forward. It's no longer so important how smart and clever your models are. The key part now will be how you manage the vast amount of context you generate as you interact with agents, and how to make it effective so it remembers what's absolutely necessary rather than keeps forgetting things. 
 
 
 ## Why Context Portability Matters
@@ -49,16 +52,10 @@ OpenClaw can:
 - **Store conversation history** including potentially sensitive information
 
 A misconfigured instance could allow:
-- Unauthorised users interacting with your AI and potentially extracting information
-- Prompt injection attacks that trick the AI into performing unintended actions
+- Unauthorised users to interact with your AI and extract information
+- Prompt injection attacks to trick the AI into performing unintended actions
 - Exposure of API keys, tokens, and personal data
-- Access to your local network if the gateway is exposed
-
-## What is OpenClaw?
-
-OpenClaw is an open-source personal AI assistant that connects to various messaging channels like Telegram, WhatsApp, Discord, and more. It provides a web-based control UI and uses LLMs (like GPT or Claude) to power conversations. The project was created by Austrian developer Peter Steinberger and has become one of the fastest-growing GitHub repositories.
-
-I wanted to try it out and see if it could become my daily driver for managing tasks through Telegram.
+- Unwanted access to your local network if the gateway is exposed
 
 ## Why Docker?
 
@@ -146,7 +143,7 @@ services:
 - Volume mount is limited to `./data` only - the container can't access your entire filesystem
 - Ports are only exposed to your local network by default
 
-This is the part I really like. All the context stays in one folder.
+The key thing here is that all context stays in the `./data` folder. That's what makes this portable.
 
 ## Step 2: Create the Environment File (Secrets Management)
 
@@ -181,7 +178,7 @@ openssl rand -hex 32
 
 ## Step 3: Create a Comprehensive .gitignore
 
-This is your first line of defense against accidentally leaking secrets:
+This is your first line of defence against accidentally leaking secrets:
 
 ```gitignore
 # Environment files (contains secrets)
@@ -310,7 +307,7 @@ docker compose restart openclaw-gateway
 
 ## Security Hardening Checklist
 
-After setup, verify these security measures:
+Once everything is running, go through these checks:
 
 ### 1. Network Binding
 
@@ -431,9 +428,9 @@ docker compose build --no-cache
 docker compose up -d openclaw-gateway
 ```
 
-## Secure Backup Strategy
+## Backup Strategy
 
-Since all data is in the `data/` directory, backup is straightforward, but handle with care:
+Since all data lives in the `data/` directory, backup is straightforward. This is also how you move your assistant to another machine.
 
 ```bash
 # Create encrypted backup
@@ -450,9 +447,9 @@ tar -czf openclaw-backup-$(date +%Y%m%d).tar.gz data/
 
 **Remember**: Your backup contains API keys and conversation history. Store it securely.
 
-## What NOT to Do
+## Common Mistakes to Avoid
 
-Common security mistakes to avoid:
+A few things I've seen people get wrong:
 
 1. **Don't use `"dmPolicy": "open"` with `"allowFrom": ["*"]`** - Anyone can chat with your bot
 2. **Don't commit `.env` or `openclaw.json`** - Your tokens will be exposed
