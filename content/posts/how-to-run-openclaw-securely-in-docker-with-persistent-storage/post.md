@@ -18,9 +18,9 @@ twitter:
     description: A guide to running OpenClaw in Docker with portable context. Move your AI assistant between machines without losing memory.
 ---
 
-I recently wanted to set up [OpenClaw](https://openclaw.ai/) (formerly known as ClawdBot) as my personal AI assistant, but I had two major concerns: I didn't want to install it directly on my machine, and more importantly, I wanted to make sure it was properly secured. An AI assistant with access to tools and messaging channels is a powerful thing - and a potential attack vector if misconfigured.
+I recently wanted to set up [OpenClaw](https://openclaw.ai/) (formerly known as [ClawdBot and Moltbot](https://www.forbes.com/sites/kateoflahertyuk/2026/02/06/what-is-openclaw-formerly-moltbot--everything-you-need-to-know/)) and explore exactly what it can do, I heard [great things about it](https://www.digitalocean.com/resources/articles/what-is-openclaw) but also [no so good](https://www.reddit.com/r/cybersecurity/comments/1qwrwsh/openclaw_is_terrifying_and_the_clawhub_ecosystem/) especially around the security risks. The bit that really interested the most is how it suppose to [handle context and memory really well](https://manthanguptaa.in/posts/clawdbot_memory/) and wanted to prove it out myself
+One of the most interesting features of OpenClaw is that it handles context and memory in their file system, it doesn't use use sqllite for finding context but it feels to me it's much better and efficient way to store context, I also like the ide that you own your own data, the bot is generating context as you interact with it, context engineering will probably be the biggest part of the next challenge, it's not longer so important that important how smart adn clever your model are, the key part now will be how you manage the vast amount of context you generate as you interact with the agents, and how to make it effective so remembers what it's absolutely necessary rather than keep forgetting things 
 
-After some experimentation (and a few security scares), I got it working securely and wanted to share the complete setup process with a focus on keeping your instance protected.
 
 ## Why Context Portability Matters
 
