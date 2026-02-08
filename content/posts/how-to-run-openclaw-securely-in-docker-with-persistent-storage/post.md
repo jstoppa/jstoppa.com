@@ -1,82 +1,68 @@
 ---
 author: Juan Stoppa
-title: "How to Run OpenClaw Securely in Docker with Persistent Storage"
-summary: A guide to running OpenClaw in Docker with portable context. Move your AI assistant between machines without losing memory or configuration.
+title: "When context is the moat: running OpenClaw securely with persistent memory"
+summary: Notes on running OpenClaw in docker with special focus on persistent context, memory and data
 date: 2026-02-02
-description: Step-by-step tutorial for setting up OpenClaw in Docker with portable context. Keep your AI assistant's memory and move it between machines easily.
+description: Notes on running OpenClaw in docker with special focus on persistent context, memory and data ownership.
 draft: false
 math: false
-tags: ['openclaw', 'docker', 'ai-assistant', 'telegram', 'self-hosted', 'security', 'context-portability']
+tags: ['openclaw', 'clawdbot', 'moltbot', 'agent-context']
 cover:
     image: 'posts/how-to-run-openclaw-securely-in-docker-with-persistent-storage/openclaw-docker-cover.png'
-    caption: "Running OpenClaw securely in Docker with persistent storage"
+    caption: "When context is the product: running OpenClaw with persistent memory"
     hidden: true
 twitter:
     card: summary_large_image
     site: '@juanstoppa'
-    title: "How to Run OpenClaw Securely in Docker with Persistent Storage"
-    description: A guide to running OpenClaw in Docker with portable context. Move your AI assistant between machines without losing memory.
+    title: "When context is the product: running OpenClaw with persistent memory"
+    description: Notes on running OpenClaw in docker with special focus on persistent context, memory and data ownership.
 ---
 
-I recently wanted to set up [OpenClaw](https://openclaw.ai/) (formerly known as [ClawdBot and Moltbot](https://www.forbes.com/sites/kateoflahertyuk/2026/02/06/what-is-openclaw-formerly-moltbot--everything-you-need-to-know/)) and explore exactly what it can do. I heard [great things about it](https://www.digitalocean.com/resources/articles/what-is-openclaw) but also [not so good](https://www.reddit.com/r/cybersecurity/comments/1qwrwsh/openclaw_is_terrifying_and_the_clawhub_ecosystem/), especially around the security risks. The bit that really interested me the most is how it's supposed to [handle context and memory really well](https://manthanguptaa.in/posts/clawdbot_memory/). I wanted to prove it out myself.
+Context engineering is one of the hardest problems to solve when working with AI agents. It is no longer just about how capable the model is but about how you manage the growing amount of context generated through interaction, and how you ensure agents remember what actually matters rather than losing important details over time.
 
-One of the most interesting features of OpenClaw is that it handles context and memory in the file system. It doesn't use SQLite for finding context but it feels to me like a much better and more efficient way to store context. I also like the idea that you own your own data. The bot generates context as you interact with it.
+I had heard really good things about OpenClaw’s memory management so I decided to give it a go. [OpenClaw](https://openclaw.ai/) (formerly known as [ClawdBot or Moltbot](https://www.forbes.com/sites/kateoflahertyuk/2026/02/06/what-is-openclaw-formerly-moltbot--everything-you-need-to-know/)) has been getting attention for how it handles [context and memory](https://manthanguptaa.in/posts/clawdbot_memory/), which made it a good candidate to explore this space more hands-on.
 
-Context engineering will probably be the biggest challenge going forward. It's no longer so important how smart and clever your models are. The key part now will be how you manage the vast amount of context you generate as you interact with agents, and how to make it effective so it remembers what's absolutely necessary rather than keeps forgetting things. 
+OpenClaw runs on your own infrastructure, stores context on disk and uses SQLite together with vector memory search to retrieve relevant context (still exploring how this last bit works in practice). The data remains yours and memory is built incrementally as you interact with the agent, rather than being hidden behind a managed service.
 
+Once context becomes central, where that context lives becomes just as important. If memory is what gives an agent its value over time, then losing access to it breaks the whole experience. That pushed me to think about context not only in terms of storage and security but also in terms of portability and reuse.
 
-## Why Context Portability Matters
+## Why context portability is so important
 
-There's another reason I chose this setup that goes beyond security.
+Once context becomes valuable, owning it is not optional. Your AI agent builds knowledge over time. It learns your preferences, remembers past conversations and accumulates information that directly affects how useful it is. 
 
-I wanted my AI assistant to be portable.
+Losing that context means starting again from zero.
 
-Think about it. Your AI assistant builds context over time. It learns your preferences, remembers past conversations, stores useful information. That context is valuable. Losing it means starting from scratch.
+If that context lives on a single machine, ownership is limited. A broken laptop, a switch to a desktop or the need to work from another location is enough to break the experience. The agent still exists but the memory that made it useful does not.
 
-If that context lives on a single machine, you're locked in. Your laptop breaks, you want to switch to a desktop, or you need to work from a different location. Suddenly your assistant is stuck somewhere else.
+This is where portability becomes critical. Context should not be tied to one device or one environment. It should be something you can move, copy and run elsewhere without friction.
 
-By running OpenClaw in Docker with all data in a single folder, I can move my entire assistant to another machine in minutes. Copy the folder, run Docker, done. Same context, same memory, same configuration.
+By running OpenClaw in Docker with all data stored in a single folder, the agent becomes portable by design. I can move the entire setup to another machine in minutes. Copy the folder, run Docker and the agent starts with the same context, memory, and configuration as before.
 
-This isn't just about backup. It's about freedom. I don't want to depend on a single piece of hardware to access my AI assistant. I want to be able to spin it up wherever I need it.
+This is not just about backup. It is about not being tied to a single piece of hardware. I want to be able to run my AI agent wherever I need it, whether that is my laptop, a desktop machine, or a VPS, without losing context or starting again.
 
-The Docker setup makes this trivial. Everything lives in the `data/` directory. Move that folder and you move your assistant.
+Looking ahead, this also hints at where things may be going. It is easy to imagine services that run OpenClaw as a hosted option while still allowing users to keep ownership of their data. Whether OpenClaw itself enables this remains to be seen but the direction feels natural, particularly in enterprise environments where data ownership and control are non negotiable.
 
-## Why Security Matters for AI Assistants
-
-Before diving in, let's understand the risks.
-
-OpenClaw can:
-- **Read files** on the system it has access to
-- **Execute actions** if tools are enabled
-- **Receive messages** from external channels (Telegram, WhatsApp, etc.)
-- **Store conversation history** including potentially sensitive information
-
-A misconfigured instance could allow:
-- Unauthorised users to interact with your AI and extract information
-- Prompt injection attacks to trick the AI into performing unintended actions
-- Exposure of API keys, tokens, and personal data
-- Unwanted access to your local network if the gateway is exposed
-
-## Why Docker?
-
-Running OpenClaw in Docker provides several practical benefits:
-- **Portability**: Move your entire AI assistant to another machine by copying a single folder
-- **Context preservation**: All memory, conversations and configuration travel together
-- **Isolation**: The AI runs in a sandboxed container, limiting what it can access on your host system
-- **No local installation**: Keep your system clean without installing Node.js dependencies
-- **Data Control**: All data stays in a local folder you control and can audit
-- **Easy Updates**: Rebuild the container to get security patches
+The Docker setup makes this simple. Everything lives in the data/ directory. Move that folder and you move the agent.
 
 ## The Setup
 
-Here's the complete structure we'll create:
+Here's the complete structure I created as a docker compose, this setup will allow you to start OpenClaw very quickly and securely. It is intended to be stored in a private Git repository or if you want to be even  more secure, in a on prem or cloud secure storage service.
+
+> ℹ️ **NOTE**  
+> You can get the whole setup [here](https://github.com/jstoppa/openclaw_setup) but I still recommend you to follow the steps below to understand the process and the security considerations.
+
+> 🚨 **IMPORTANT**  
+> I have included all the configuration files I could locate so far (.env, openclaw.json, auth-profiles.json, etc) in the .gitignore file.  
+> Please review them carefully and make sure the repository remains private at all times.  s  
+> **Do not make this repository public.**
+
 
 ```
-openclaw_profile/
+openclaw_setup/
 ├── docker-compose.yml      # Container orchestration
 ├── .env                    # Environment variables (secrets - NEVER commit!)
 ├── .env.example            # Template for .env (safe to commit)
-├── .gitignore              # Protect sensitive files
+├── .gitignore              # Protect sensitive files like .env, openclaw.json, auth-profiles.json, etc
 ├── data/                   # All OpenClaw data (volume mount)
 │   ├── openclaw.json       # Configuration (contains tokens - gitignored)
 │   ├── memory/             # SQLite database for semantic search
@@ -89,7 +75,7 @@ openclaw_profile/
 
 ## Step 1: Create the Docker Compose File
 
-Create a `docker-compose.yml` file:
+Create the `docker-compose.yml` file:
 
 ```yaml
 services:
@@ -140,14 +126,15 @@ services:
 
 **Security notes:**
 - The container runs as `node` user (UID 1000), not root
-- Volume mount is limited to `./data` only - the container can't access your entire filesystem
+- Volume mount is limited to `./data` only, the container can't access your entire filesystem
 - Ports are only exposed to your local network by default
 
 The key thing here is that all context stays in the `./data` folder. That's what makes this portable.
 
 ## Step 2: Create the Environment File (Secrets Management)
 
-**This is critical for security.** Never hardcode tokens in your docker-compose.yml.
+> 🚨 **IMPORTANT**   
+> **This is critical for security.** Never hardcode tokens in your docker-compose.yml.
 
 Create `.env.example` as a template (safe to commit):
 
@@ -173,34 +160,50 @@ cp .env.example .env
 openssl rand -hex 32
 # Copy the output and paste it as OPENCLAW_GATEWAY_TOKEN in .env
 ```
-
-**Important**: Use a strong, randomly generated token. Never use simple passwords or reuse tokens from other services.
+> 🚨 **IMPORTANT**   
+> Use a strong, randomly generated token. Never use simple passwords or reuse tokens from other services.
 
 ## Step 3: Create a Comprehensive .gitignore
 
-This is your first line of defence against accidentally leaking secrets:
+This is your first line of defence against accidentally leaking secrets, in any case your repo should alwayys be private but it's better to never have any key inside the repo:
 
 ```gitignore
 # Environment files (contains secrets)
 .env
 data/.env
 
-# OpenClaw sensitive config (contains API keys and tokens)
+# OpenClaw sensitive config (contains tokens)
 data/openclaw.json
 data/openclaw.json.bak
 
-# Credentials directory
+# Device identity (contains private keys)
+data/identity/
+
+# Credentials and pairing (per-setup, contains secrets)
 data/credentials/
+data/devices/
+data/agents/**/auth-profiles.json
+data/agents/**/agent/
+
+# Telegram state (per-setup)
+data/telegram/
 
 # Runtime files
 data/update-check.json
+data/completions/
+data/canvas/
+data/cron/
 
 # Docker
 .docker/
 
-# Logs (may contain sensitive information)
+# Logs
 *.log
 logs/
+
+# Temporary files
+tmp/
+*.tmp
 
 # OS files
 **/.DS_Store
@@ -212,6 +215,10 @@ Thumbs.db
 *~
 .idea/
 .vscode/
+
+# Backup files
+*.bak
+*.backup
 ```
 
 ## Step 4: Build and Start
@@ -232,6 +239,9 @@ docker compose up -d openclaw-gateway
 
 The onboarding wizard will ask you to:
 1. **Acknowledge security warnings** - read these carefully!
+
+![Security warnings](/posts/how-to-run-openclaw-securely-in-docker-with-persistent-storage/openclaw-onboarding-acknowledge.png)
+
 2. Choose gateway binding mode (choose `loopback` for maximum security)
 3. Configure your LLM credentials
 4. Set up messaging channels
