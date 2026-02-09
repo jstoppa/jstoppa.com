@@ -9,12 +9,12 @@ math: false
 tags: ['openclaw', 'clawdbot', 'moltbot', 'agent-context']
 cover:
     image: 'posts/how-to-run-openclaw-securely-in-docker-with-persistent-storage/openclaw-docker-cover.png'
-    caption: "When context is the product: running OpenClaw with persistent memory"
+    caption: "When context is the product: running OpenClaw securely with persistent memory"
     hidden: true
 twitter:
     card: summary_large_image
     site: '@juanstoppa'
-    title: "When context is the product: running OpenClaw with persistent memory"
+    title: "When context is the product: running OpenClaw securely with persistent memory"
     description: Notes on running OpenClaw in docker with special focus on persistent context, memory and data ownership.
 ---
 
@@ -239,29 +239,12 @@ docker compose up -d openclaw-gateway
 
 The onboarding wizard will ask you to:
 1. **Acknowledge security warnings** - read these carefully!
-
 ![Security warnings](/posts/how-to-run-openclaw-securely-in-docker-with-persistent-storage/openclaw-onboarding-acknowledge.png)
+2. It will ask you if you want to do a QuickStart or manual, I would recommend a quickstart as it will guide you through the process of setting up your LLM credentials and messaging channels.
+3. You'll need to configure your LLM (either using API key or OAuth when supported)
+4. Set up the communication channel you want to use (Telegram, WhatsApp, etc), I'll show below how to do it for Telegram.
 
-2. Choose gateway binding mode (choose `loopback` for maximum security)
-3. Configure your LLM credentials
-4. Set up messaging channels
 
-## Step 5: Fix the Docker Pairing Issue
-
-This one took me a while to figure out.
-
-If you see "disconnected (1008): pairing required" when accessing the web UI, this is a [known Docker networking issue](https://github.com/openclaw/openclaw/issues/4941). Docker's NAT makes connections appear external, triggering the pairing requirement.
-
-Fix it by editing `data/openclaw.json` and adding the `controlUi` section:
-
-```json
-{
-  "gateway": {
-    "controlUi": {
-      "dangerouslyDisableDeviceAuth": true
-    }
-  }
-}
 ```
 
 Then restart: `docker compose restart openclaw-gateway`
