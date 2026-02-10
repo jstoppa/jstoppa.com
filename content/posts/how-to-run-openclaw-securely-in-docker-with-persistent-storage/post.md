@@ -44,6 +44,16 @@ Looking ahead, this also hints at where things may be going. It is easy to imagi
 
 The Docker setup makes this simple. Everything lives in the data/ directory. Move that folder and you move the agent.
 
+## Why security cannot be an afterthought
+
+Before diving into the setup, it's worth understanding the risks. This isn't theoretical - OpenClaw has had real security incidents.
+
+In early 2026, researchers found [over 30,000 exposed OpenClaw instances](https://hunt.io/blog/cve-2026-25253-openclaw-ai-agent-exposure) accessible over the internet. A critical vulnerability ([CVE-2026-25253](https://ccb.belgium.be/advisories/warning-critical-vulnerability-openclaw-allows-1-click-remote-code-execution-when)) allowed attackers to steal authentication tokens and gain full gateway access. The [Moltbook breach](https://adversa.ai/blog/openclaw-security-101-vulnerabilities-hardening-2026/) exposed 1.5 million API tokens.
+
+OpenClaw can read files, execute actions, receive messages from external channels and store conversation history. A misconfigured instance could allow unauthorised users to interact with your AI, prompt injection attacks, exposure of API keys, or access to your local network.
+
+The lesson here is clear: treat OpenClaw like a script runner with memory, not a harmless chat app.
+
 ## The Setup
 
 Here's the complete structure I created as a docker compose, this setup will allow you to start OpenClaw very quickly and securely. It is intended to be stored in a private Git repository or if you want to be even  more secure, in a on prem or cloud secure storage service.
@@ -165,7 +175,7 @@ openssl rand -hex 32
 
 ## Step 3: Create a Comprehensive .gitignore
 
-This is your first line of defence against accidentally leaking secrets, in any case your repo should alwayys be private but it's better to never have any key inside the repo:
+This is your first line of defence against accidentally leaking secrets. Your repo should always be private, but it's better to never have any key inside the repo:
 
 ```gitignore
 # Environment files (contains secrets)
@@ -244,7 +254,32 @@ The onboarding wizard will ask you to:
 3. You'll need to configure your LLM (either using API key or OAuth when supported)
 4. Set up the communication channel you want to use (Telegram, WhatsApp, etc), I'll show below how to do it for Telegram.
 
+### Post-Installation Health Check
 
+After the gateway starts, run the doctor command to catch any configuration issues:
+
+```bash
+docker compose run --rm openclaw-cli doctor --fix
+```
+
+This checks for security misconfigurations and can automatically fix common problems.
+
+## Step 5: Fix the Docker Pairing Issue
+
+This one took me a while to figure out.
+
+If you see "disconnected (1008): pairing required" when accessing the web UI, this is a [known Docker networking issue](https://github.com/openclaw/openclaw/issues/4941). Docker's NAT makes connections appear external, triggering the pairing requirement.
+
+Fix it by editing `data/openclaw.json` and adding the `controlUi` section:
+
+```json
+{
+  "gateway": {
+    "controlUi": {
+      "dangerouslyDisableDeviceAuth": true
+    }
+  }
+}
 ```
 
 Then restart: `docker compose restart openclaw-gateway`
@@ -351,6 +386,21 @@ OpenClaw has a built-in security auditor:
 docker compose run --rm openclaw-cli security audit --deep
 ```
 
+### 6. Keep OpenClaw Updated
+
+This is critical. OpenClaw has had several security vulnerabilities patched in recent versions. Make sure you're running at least version 2026.1.29 which fixed the critical [CVE-2026-25253](https://thehackernews.com/2026/02/openclaw-bug-enables-one-click-remote.html) token exfiltration bug.
+
+Check your version:
+```bash
+docker compose run --rm openclaw-cli --version
+```
+
+Update regularly:
+```bash
+docker compose build --no-cache
+docker compose up -d openclaw-gateway
+```
+
 ## Understanding the Data Structure
 
 This is the key part for portability. All your data is stored in the `data/` directory:
@@ -450,6 +500,7 @@ A few things I've seen people get wrong:
 4. **Don't share your bot token** - Anyone with it can impersonate your bot
 5. **Don't run as root** - The container already runs as `node` user, don't change this
 6. **Don't expose ports to the internet** without proper authentication
+7. **Be careful with ClawHub skills** - [Research by Snyk](https://snyk.io/blog/openclaw-skills-credential-leaks-research/) found that about 7% of skills in the marketplace contain flaws that expose credentials. Only install skills from trusted sources and review them before use
 
 ## Troubleshooting
 
