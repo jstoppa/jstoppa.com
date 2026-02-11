@@ -18,7 +18,7 @@ twitter:
     description: Notes on running OpenClaw in docker with special focus on persistent context, memory and data ownership.
 ---
 
-Context engineering is one of the hardest problems to solve when working with AI agents. It is no longer just about how capable the model is but about how you manage the growing amount of context generated through interaction, and how you ensure agents remember what actually matters rather than losing important details over time.
+Context engineering is one of the hardest problems to solve when working with AI agents. It is no longer just about how capable the model is but about how you manage the growing amount of context generated through interaction and how you ensure agents remember what actually matters rather than losing important details over time.
 
 I had heard really good things about OpenClaw’s memory management so I decided to give it a go. [OpenClaw](https://openclaw.ai/) (formerly known as [ClawdBot or Moltbot](https://www.forbes.com/sites/kateoflahertyuk/2026/02/06/what-is-openclaw-formerly-moltbot--everything-you-need-to-know/)) has been getting attention for how it handles [context and memory](https://manthanguptaa.in/posts/clawdbot_memory/), which made it a good candidate to explore this space more hands-on.
 
@@ -36,7 +36,7 @@ If that context lives on a single machine, ownership is limited. A broken laptop
 
 This is where portability becomes critical. Context should not be tied to one device or one environment. It should be something you can move, copy and run elsewhere without friction.
 
-By running OpenClaw in Docker with all data stored in a single folder, the agent becomes portable by design. I can move the entire setup to another machine in minutes. Copy the folder, run Docker and the agent starts with the same context, memory, and configuration as before.
+The solution that worked pretty well for me was running OpenClaw in Docker with all data stored in a single folder with an external volume then all data . I can move the entire setup to another machine in minutes. Copy the folder, run Docker and the agent starts with the same context, memory, and configuration as before.
 
 This is not just about backup. It is about not being tied to a single piece of hardware. I want to be able to run my AI agent wherever I need it, whether that is my laptop, a desktop machine, or a VPS, without losing context or starting again.
 
@@ -44,15 +44,15 @@ Looking ahead, this also hints at where things may be going. It is easy to imagi
 
 The Docker setup makes this simple. Everything lives in the data/ directory. Move that folder and you move the agent.
 
-## Why security cannot be an afterthought
+## The security warnings
 
 Before diving into the setup, it's worth understanding the risks. This isn't theoretical - OpenClaw has had real security incidents.
 
 In early 2026, researchers found [over 30,000 exposed OpenClaw instances](https://hunt.io/blog/cve-2026-25253-openclaw-ai-agent-exposure) accessible over the internet. A critical vulnerability ([CVE-2026-25253](https://ccb.belgium.be/advisories/warning-critical-vulnerability-openclaw-allows-1-click-remote-code-execution-when)) allowed attackers to steal authentication tokens and gain full gateway access. The [Moltbook breach](https://adversa.ai/blog/openclaw-security-101-vulnerabilities-hardening-2026/) exposed 1.5 million API tokens.
 
-OpenClaw can read files, execute actions, receive messages from external channels and store conversation history. A misconfigured instance could allow unauthorised users to interact with your AI, prompt injection attacks, exposure of API keys, or access to your local network.
+OpenClaw can read files, execute actions, receive messages from external channels and store conversation history. A misconfigured instance could allow unauthorised users to interact with your AI, prompt injection attacks, exposure of API keys or access to your local network.
 
-The lesson here is clear: treat OpenClaw like a script runner with memory, not a harmless chat app.
+Treat OpenClaw like a script runner with memory, not a harmless chat app.
 
 ## The Setup
 
@@ -63,8 +63,8 @@ Here's the complete structure I created as a docker compose, this setup will all
 
 > 🚨 **IMPORTANT**  
 > I have included all the configuration files I could locate so far (.env, openclaw.json, auth-profiles.json, etc) in the .gitignore file.  
-> Please review them carefully and make sure the repository remains private at all times.  s  
-> **Do not make this repository public.**
+> Please review them carefully and make sure the repository remains private at all times.  
+> **Do not make this repository public!!!**
 
 
 ```
@@ -75,12 +75,14 @@ openclaw_setup/
 ├── .gitignore              # Protect sensitive files like .env, openclaw.json, auth-profiles.json, etc
 ├── data/                   # All OpenClaw data (volume mount)
 │   ├── openclaw.json       # Configuration (contains tokens - gitignored)
-│   ├── memory/             # SQLite database for semantic search
-│   ├── agents/             # Session transcripts
-│   └── workspace/          # Memory files and daily logs
+│   ├── agents/             # Agent config and session transcripts (.jsonl)
+│   ├── canvas/             # Canvas files
+│   ├── cron/               # Cron jobs
+│   ├── memory/             # Vector embeddings (main.sqlite) for semantic search
+│   └── workspace/          # Agent identity files (.md) and daily memory summaries
 └── scripts/                # Helper scripts
-    ├── setup.sh
-    └── cli.sh
+    ├── onboard.sh          # Setup script
+    └── upgrade.sh          # Upgrade script
 ```
 
 ## Step 1: Create the Docker Compose File
@@ -149,33 +151,77 @@ The key thing here is that all context stays in the `./data` folder. That's what
 Create `.env.example` as a template (safe to commit):
 
 ```bash
-# Docker image configuration
+# OpenClaw Docker Configuration
+# Copy this file to .env and fill in your values
+
+# =============================================================================
+# Docker Image Configuration
+# =============================================================================
+
+# Docker image name (default: openclaw:local)
 OPENCLAW_IMAGE=openclaw:local
 
-# Gateway configuration
+# Optional: System packages to install in container during build
+# Example: OPENCLAW_DOCKER_APT_PACKAGES=ffmpeg build-essential
+OPENCLAW_DOCKER_APT_PACKAGES=
+
+# =============================================================================
+# Gateway Configuration
+# =============================================================================
+
+# Port for web UI (default: 18789)
 OPENCLAW_GATEWAY_PORT=18789
+
+# Port for bridge connections (default: 18790)
 OPENCLAW_BRIDGE_PORT=18790
+
+# Network binding mode: localhost, lan, or public (default: lan)
+# - localhost: Only accessible from this machine
+# - lan: Accessible from local network
+# - public: Accessible from anywhere (use with caution)
 OPENCLAW_GATEWAY_BIND=lan
 
-# Authentication token for web UI (generate with: openssl rand -hex 32)
+# Authentication token for web UI access (REQUIRED)
+# Generate with: openssl rand -hex 32
 OPENCLAW_GATEWAY_TOKEN=your_secure_token_here
+
+# =============================================================================
+# Claude AI Credentials
+# =============================================================================
+
+# These are configured during onboarding (docker compose run --rm openclaw-cli onboard)
+# Leave empty and run onboarding, or fill in manually if you have them
+
+CLAUDE_AI_SESSION_KEY=
+CLAUDE_WEB_SESSION_KEY=
+CLAUDE_WEB_COOKIE=
+
+# =============================================================================
+# Optional: Messaging Channel Credentials
+# =============================================================================
+
+# Twilio (for WhatsApp/SMS)
+# TWILIO_ACCOUNT_SID=
+# TWILIO_AUTH_TOKEN=
+# TWILIO_WHATSAPP_FROM=
+
+# Discord
+# DISCORD_BOT_TOKEN=
+
+# Telegram
+# TELEGRAM_BOT_TOKEN=
 ```
 
-Then create your actual `.env` file with a strong token:
+Then create your actual `.env` file with a strong token (I recommend using a token generator like [this one](https://it-tools.tech/token-generator) and place it in `your_secure_token_here`)
 
-```bash
-cp .env.example .env
-
-# Generate a cryptographically secure token (32 bytes = 64 hex characters)
-openssl rand -hex 32
-# Copy the output and paste it as OPENCLAW_GATEWAY_TOKEN in .env
-```
 > 🚨 **IMPORTANT**   
 > Use a strong, randomly generated token. Never use simple passwords or reuse tokens from other services.
 
-## Step 3: Create a Comprehensive .gitignore
+You will use this same value in **Step 6** as `gateway.auth.token` in `data/openclaw.json` so the web UI and config stay in sync.
 
-This is your first line of defence against accidentally leaking secrets. Your repo should always be private, but it's better to never have any key inside the repo:
+## Step 3: Create your gitignore file
+
+This is your first line of defence against accidentally leaking secrets. Your repo should always be private but it's better to never have any key inside the repo:
 
 ```gitignore
 # Environment files (contains secrets)
@@ -201,8 +247,6 @@ data/telegram/
 # Runtime files
 data/update-check.json
 data/completions/
-data/canvas/
-data/cron/
 
 # Docker
 .docker/
@@ -249,12 +293,98 @@ docker compose up -d openclaw-gateway
 
 The onboarding wizard will ask you to:
 1. **Acknowledge security warnings** - read these carefully!
-![Security warnings](/posts/how-to-run-openclaw-securely-in-docker-with-persistent-storage/openclaw-onboarding-acknowledge.png)
+![OpenClaw Onboarding](/posts/how-to-run-openclaw-securely-in-docker-with-persistent-storage/openclaw-onboarding-acknowledge.png)
 2. It will ask you if you want to do a QuickStart or manual, I would recommend a quickstart as it will guide you through the process of setting up your LLM credentials and messaging channels.
-3. You'll need to configure your LLM (either using API key or OAuth when supported)
+3. You'll need to configure your LLM (either using API key or OAuth when supported), in my case I'm using OpenAI where you'll need to copy the URL into the browser, authenticate and the copy and paste the authorization code into the terminal.
+![OpenClaw Onboarding Setting Up Open AI](/posts/how-to-run-openclaw-securely-in-docker-with-persistent-storage/openclaw-onboarding-setting-up-openai.png)
 4. Set up the communication channel you want to use (Telegram, WhatsApp, etc), I'll show below how to do it for Telegram.
 
-### Post-Installation Health Check
+## Step 5: Set Up Telegram and Gateway
+
+This is where many people get security wrong. By default, if you enable Telegram without restrictions, **anyone who finds your bot can chat with it**. Restrict access from the start.
+
+### 1. Create the Telegram bot and get your user ID
+
+1. In Telegram, open [@BotFather](https://t.me/BotFather), send `/newbot`, and follow the prompts. Copy the **bot token** you receive.
+2. To get your **Telegram user ID**, message [@userinfobot](https://t.me/userinfobot). It will reply with your numeric ID.
+
+### 2. Add the configuration to `data/openclaw.json`
+
+Edit `data/openclaw.json` and add (or merge) the following. Use the same **gateway token** value you set in `.env` as `OPENCLAW_GATEWAY_TOKEN` in Step 2 — that token protects the web UI.
+
+```json
+{
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "botToken": "your_bot_token_from_telegram",
+      "allowFrom": [
+        "your_telegram_user_id"
+      ],
+      "groupPolicy": "allowlist",
+      "streamMode": "partial"
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "your_secure_token_setup_in_the_.env_file"
+    },
+    "trustedProxies": [],
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    }
+  }
+}
+```
+
+Replace the placeholders:
+
+| Placeholder | Where to get it |
+|-------------|-----------------|
+| `your_bot_token_from_telegram` | From [@BotFather](https://t.me/BotFather) after creating the bot |
+| `your_telegram_user_id` | Your numeric ID from [@userinfobot](https://t.me/userinfobot) (as a string, e.g. `"123456789"`) |
+| `your_secure_token_setup_in_the_.env_file` | Same value as `OPENCLAW_GATEWAY_TOKEN` in your `.env` file |
+
+### 3. What these settings do
+
+**Telegram**
+
+| Setting | Meaning |
+|---------|---------|
+| `dmPolicy: "pairing"` | Only users who have completed pairing (or are in `allowFrom`) can DM the bot. Use `"allowlist"` if you only want the listed user IDs with no pairing. |
+| `allowFrom` | List of Telegram user IDs allowed to use the bot. Never use `["*"]` in production. |
+| `groupPolicy: "allowlist"` | Only groups you explicitly allow can use the bot. |
+| `streamMode: "partial"` | Streams responses in chunks for a more responsive feel. |
+
+**Gateway**
+
+| Setting | Meaning |
+|---------|---------|
+| `bind: "loopback"` | Web UI is only reachable from the same machine (localhost). Use `"lan"` if you need access from other devices on your network. |
+| `auth.mode: "token"` | Web UI is protected by the token; anyone with the token can access it. |
+
+### 4. How Telegram connectivity works
+
+- The container makes **outbound HTTPS requests** to Telegram’s API (polling).
+- No inbound ports need to be open for Telegram.
+- Telegram delivers messages to your bot based on the bot token.
+
+### 5. Restart the gateway
+
+After saving `data/openclaw.json`:
+
+```bash
+docker compose restart openclaw-gateway
+```
+
+
+## Post-Installation Health Check
 
 After the gateway starts, run the doctor command to catch any configuration issues:
 
@@ -263,295 +393,13 @@ docker compose run --rm openclaw-cli doctor --fix
 ```
 
 This checks for security misconfigurations and can automatically fix common problems.
+![OpenClaw Doctor](/posts/how-to-run-openclaw-securely-in-docker-with-persistent-storage/openclaw-doctor-check.png)
 
-## Step 5: Fix the Docker Pairing Issue
+## Using the Agent
 
-This one took me a while to figure out.
+Once the gateway is running, you can try to contact your agent by sending a message to your Telegram bot. If you agent replies when you are all setup and configured, you are good to go!
+![OpenClaw Telegram Bot](/posts/how-to-run-openclaw-securely-in-docker-with-persistent-storage/openclaw-telegram-message.png)
 
-If you see "disconnected (1008): pairing required" when accessing the web UI, this is a [known Docker networking issue](https://github.com/openclaw/openclaw/issues/4941). Docker's NAT makes connections appear external, triggering the pairing requirement.
-
-Fix it by editing `data/openclaw.json` and adding the `controlUi` section:
-
-```json
-{
-  "gateway": {
-    "controlUi": {
-      "dangerouslyDisableDeviceAuth": true
-    }
-  }
-}
-```
-
-Then restart: `docker compose restart openclaw-gateway`
-
-**Note**: This setting is named "dangerously" for a reason - it disables device authentication for the Control UI. This is acceptable when running locally, but if you ever expose the gateway to the internet, you should implement proper device pairing instead.
-
-## Step 6: Secure Telegram Configuration
-
-This is where many people get security wrong.
-
-By default, if you just enable Telegram without restrictions, **anyone who finds your bot can chat with it**. I learned this the hard way during testing.
-
-### How Telegram Bot Connectivity Works
-
-First, understand what's happening:
-- Your container makes **outbound HTTPS requests** to Telegram's API (polling)
-- No inbound ports need to be open to the internet for Telegram
-- Telegram routes messages to your bot based on the bot token
-
-### The Secure Configuration
-
-Create a Telegram bot via [@BotFather](https://t.me/BotFather), then edit `data/openclaw.json`:
-
-```json
-{
-  "channels": {
-    "telegram": {
-      "enabled": true,
-      "botToken": "YOUR_BOT_TOKEN_HERE",
-      "dmPolicy": "allowlist",
-      "allowFrom": ["YOUR_TELEGRAM_USER_ID"]
-    }
-  }
-}
-```
-
-**Critical settings explained:**
-
-| Setting | Secure Value | Why |
-|---------|--------------|-----|
-| `dmPolicy` | `"allowlist"` | Only users in the list can chat (not `"open"`!) |
-| `allowFrom` | `["YOUR_ID"]` | Whitelist of allowed Telegram user IDs |
-
-To find your Telegram user ID, message [@userinfobot](https://t.me/userinfobot).
-
-**Never use `"allowFrom": ["*"]`** in production - this allows anyone to chat with your bot.
-
-Restart the gateway after making changes:
-
-```bash
-docker compose restart openclaw-gateway
-```
-
-## Security Hardening Checklist
-
-Once everything is running, go through these checks:
-
-### 1. Network Binding
-
-Check your `data/openclaw.json`:
-
-```json
-{
-  "gateway": {
-    "bind": "lan"
-  }
-}
-```
-
-Options from most to least secure:
-- `"loopback"` - Only accessible from localhost (most secure)
-- `"lan"` - Accessible from your local network
-- `"public"` - Accessible from anywhere (dangerous!)
-
-### 2. Token Strength
-
-Verify your gateway token is strong:
-```bash
-# Should be 64 characters (32 bytes hex)
-grep OPENCLAW_GATEWAY_TOKEN .env | wc -c
-```
-
-### 3. File Permissions
-
-Ensure sensitive files aren't world-readable:
-```bash
-chmod 600 .env
-chmod 600 data/openclaw.json
-chmod 700 data/credentials/
-```
-
-### 4. Git Safety
-
-Verify secrets aren't tracked:
-```bash
-git status --ignored
-# Confirm .env and data/openclaw.json appear in ignored files
-```
-
-### 5. Run Security Audit
-
-OpenClaw has a built-in security auditor:
-```bash
-docker compose run --rm openclaw-cli security audit --deep
-```
-
-### 6. Keep OpenClaw Updated
-
-This is critical. OpenClaw has had several security vulnerabilities patched in recent versions. Make sure you're running at least version 2026.1.29 which fixed the critical [CVE-2026-25253](https://thehackernews.com/2026/02/openclaw-bug-enables-one-click-remote.html) token exfiltration bug.
-
-Check your version:
-```bash
-docker compose run --rm openclaw-cli --version
-```
-
-Update regularly:
-```bash
-docker compose build --no-cache
-docker compose up -d openclaw-gateway
-```
-
-## Understanding the Data Structure
-
-This is the key part for portability. All your data is stored in the `data/` directory:
-
-| Location | Contains | Sensitivity |
-|----------|----------|-------------|
-| `data/openclaw.json` | API keys, bot tokens | **HIGH** - gitignored |
-| `data/credentials/` | OAuth tokens | **HIGH** - gitignored |
-| `data/memory/*.sqlite` | Conversation embeddings | Medium |
-| `data/agents/main/sessions/*.jsonl` | Full conversation history | Medium |
-| `data/workspace/memory/*.md` | Daily memory summaries | Medium |
-
-### How Memory Works
-
-This is what makes OpenClaw interesting. It has three layers of memory:
-
-1. **Session logs** (`.jsonl` files): Complete conversation history
-2. **Daily summaries** (`.md` files): Human-readable daily notes
-3. **Vector index** (SQLite): Embeddings for semantic search
-
-When you ask "what did we discuss last week?", OpenClaw:
-- Converts your query to a vector embedding
-- Searches the SQLite database for similar vectors
-- Returns relevant past conversations
-
-You can manually search memory via CLI:
-
-```bash
-docker compose run --rm openclaw-cli memory search "your query"
-```
-
-## Daily Usage
-
-### Access the Web UI
-
-Open `http://localhost:18789/` in your browser and enter your gateway token.
-
-### Run CLI Commands
-
-```bash
-# Get help
-docker compose run --rm openclaw-cli --help
-
-# Search memory
-docker compose run --rm openclaw-cli memory search "topic"
-
-# Run security audit
-docker compose run --rm openclaw-cli security audit --deep
-
-# Check system health
-docker compose run --rm openclaw-cli doctor
-```
-
-### Manage the Gateway
-
-```bash
-# View logs (check for suspicious activity)
-docker compose logs -f openclaw-gateway
-
-# Restart
-docker compose restart openclaw-gateway
-
-# Stop
-docker compose down
-
-# Update to latest version (includes security patches)
-docker compose build --no-cache
-docker compose up -d openclaw-gateway
-```
-
-## Backup Strategy
-
-Since all data lives in the `data/` directory, backup is straightforward. This is also how you move your assistant to another machine.
-
-```bash
-# Create encrypted backup
-tar -czf - data/ | openssl enc -aes-256-cbc -salt -out openclaw-backup-$(date +%Y%m%d).tar.gz.enc
-
-# To restore (will prompt for password)
-openssl enc -d -aes-256-cbc -in openclaw-backup-*.tar.gz.enc | tar -xzf -
-```
-
-For unencrypted backup (only if stored securely):
-```bash
-tar -czf openclaw-backup-$(date +%Y%m%d).tar.gz data/
-```
-
-**Remember**: Your backup contains API keys and conversation history. Store it securely.
-
-## Common Mistakes to Avoid
-
-A few things I've seen people get wrong:
-
-1. **Don't use `"dmPolicy": "open"` with `"allowFrom": ["*"]`** - Anyone can chat with your bot
-2. **Don't commit `.env` or `openclaw.json`** - Your tokens will be exposed
-3. **Don't use `"bind": "public"`** unless behind a reverse proxy with auth
-4. **Don't share your bot token** - Anyone with it can impersonate your bot
-5. **Don't run as root** - The container already runs as `node` user, don't change this
-6. **Don't expose ports to the internet** without proper authentication
-7. **Be careful with ClawHub skills** - [Research by Snyk](https://snyk.io/blog/openclaw-skills-credential-leaks-research/) found that about 7% of skills in the marketplace contain flaws that expose credentials. Only install skills from trusted sources and review them before use
-
-## Troubleshooting
-
-### Gateway won't start
-```bash
-docker compose logs openclaw-gateway
-```
-
-### Data not persisting
-```bash
-# Check volume mount
-docker compose exec openclaw-gateway ls -la /home/node/.openclaw
-
-# Fix permissions if needed (node user is UID 1000)
-sudo chown -R 1000:1000 ./data/
-```
-
-### CLI can't connect to gateway
-The CLI runs in a separate container, so it can't reach the gateway via localhost. For CLI commands that need the gateway, use:
-```bash
-docker compose exec openclaw-gateway node dist/index.js <command>
-```
-
-### Suspicious activity in logs
-If you see unexpected connections or messages:
-1. Check `docker compose logs openclaw-gateway` for unknown IPs
-2. Verify your `allowFrom` list is correct
-3. Rotate your gateway token immediately
-4. Consider changing your Telegram bot token via @BotFather
-
-## Summary
-
-This setup gives you a portable and secure OpenClaw instance running in Docker with:
-- **Full portability**: Copy the `data/` folder and move your assistant anywhere
-- **Context preservation**: Memory, conversations and configuration all in one place
-- **Isolated container** that can't access your host filesystem
-- **Strong authentication** via cryptographic tokens
-- **Restricted Telegram access** limited to your user ID only
-- **Local-only network binding** preventing external access
-- **Gitignored secrets** that won't accidentally leak
-
-The real value here is not being tied to a single machine. Your AI assistant's context is yours. You should be able to take it with you.
-
-I've been running this setup for a few weeks now and it works well. I can switch between my laptop and desktop without losing any context.
-
-Security is still important. Regularly:
-- Run `openclaw security audit --deep`
-- Check logs for suspicious activity
-- Update to the latest version for security patches
-- Review your `allowFrom` lists
-
-I hope this guide helps you get started with OpenClaw!
+If you got this far hopefully you are now running OpenClaw securely and with persistent memory, I'll be covering more advanced topics in the future
 
 If you liked this post, you can follow me on [𝕏](https://x.com/juanstoppa) for more content like this.
