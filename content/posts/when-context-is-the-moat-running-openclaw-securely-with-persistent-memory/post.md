@@ -2,7 +2,7 @@
 author: Juan Stoppa
 title: "When context is the moat: running OpenClaw securely with persistent memory"
 summary: Notes on running OpenClaw in docker with special focus on persistent context, memory and data
-date: 2026-02-02
+date: 2026-02-11
 description: Notes on running OpenClaw in docker with special focus on persistent context, memory and data ownership.
 draft: false
 math: false
