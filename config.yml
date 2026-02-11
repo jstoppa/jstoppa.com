@@ -1,0 +1,105 @@
+baseURL: 'https://jstoppa.com'
+title: Juan Stoppa
+theme: ['PaperMod']
+enableInlineShortcodes: true
+googleAnalytics: G-R93JSQH2R9
+enableRobotsTXT: true
+languageCode: en-gb
+
+params:
+    env: production
+    description: "Juan Stoppa's personal blog"
+    author: Juan Stoppa
+    title: Juan Stoppa
+    ShowReadingTime: true
+    defaultTheme: auto
+    ShowShareButtons: true
+    ShowCodeCopyButtons: true
+    ShowPostNavLinks: true
+    profileMode:
+        enabled: false
+        title: PaperMod
+        imageUrl: '#'
+        imageTitle: my image
+        buttons:
+            - name: Archives
+              url: archives
+            - name: Tags
+              url: tags
+
+    homeInfoParams:
+        Title: "Notes on software, fintech and AI"
+        Content: I'm Juan, I've spent most of my career in software and fintech, I'm currently spending most of my time exploring AI. I write here about things I'm exploring - LLMs, MCP servers, how AI fits into real projects, mostly for myself, but hopefully useful to others too.
+
+    socialIcons:
+        - name: twitter
+          url: 'https://twitter.com/juanstoppa'
+        - name: linkedin
+          url: 'https://uk.linkedin.com/in/jstoppa'
+        - name: github
+          url: 'https://github.com/jstoppa'
+    social:
+        twitter: 'https://twitter.com/juanstoppa'
+        linkedin: 'https://uk.linkedin.com/in/jstoppa'
+        github: 'https://github.com/jstoppa'
+    fuseOpts:
+        isCaseSensitive: false
+        shouldSort: true
+        location: 0
+        distance: 1000
+        threshold: 0.4
+        minMatchCharLength: 0
+        keys: ['title', 'permalink', 'summary', 'content']
+
+menu:
+    main:
+        - name: Search
+          url: search/
+          weight: 10
+        - name: Archives
+          url: /archives/
+          weight: 5
+        - name: Tags
+          url: /tags/
+          weight: 10
+
+taxonomies:
+    category: categories
+    tag: tags
+    series: series
+
+sitemap:
+    changefreq: weekly
+    filename: sitemap.xml
+
+privacy:
+    vimeo:
+        disabled: false
+        simple: true
+
+    x:
+        disabled: false
+        enableDNT: true
+
+    instagram:
+        disabled: false
+        simple: true
+
+    youtube:
+        disabled: false
+        privacyEnhanced: true
+
+services:
+    instagram:
+        disableInlineCSS: true
+    twitter:
+        disableInlineCSS: true
+
+outputs:
+    home:
+        - HTML
+        - RSS
+        - JSON
+
+pagination:
+  pagerSize: 8
