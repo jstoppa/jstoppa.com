@@ -10,7 +10,10 @@ Juan Stoppa's personal blog
 git push --mirror https://github.com/jstoppa/jstoppa.com.git
 ```
 
-2. Open the [jstoppa.com](https://github.com/jstoppa/jstoppa.com) repo locally and clean it by running:
+2. Open the [jstoppa.com](https://github.com/jstoppa/jstoppa.com) repo locally. 
+If `git pull` asks for tracking info, run once: `git branch --set-upstream-to=origin/main main`. 
+If it says branches have diverged (e.g. after a mirror push), run: `git reset --hard origin/main`. 
+Then clean the repo by running:
    - Windows: `rebase.bat`
    - macOS/Linux: `./rebase.sh`
 
