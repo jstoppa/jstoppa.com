@@ -8,7 +8,7 @@ draft: false
 math: false
 tags: ['openclaw', 'clawdbot', 'moltbot', 'agent-context']
 cover:
-    image: 'posts/when-context-is-the-moat-running-openclaw-securely-with-persistent-memory/openclaw-docker-cover.png'
+    image: 'posts/when-context-is-the-moat-running-openclaw-securely-with-persistent-memory/openclaw-setup-cover.png'
     caption: "When context is the product: running OpenClaw securely with persistent memory"
     hidden: true
 twitter:
