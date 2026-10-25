@@ -53,8 +53,8 @@ jobs:
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
       - name: Build JSON Forms playground
         run: |
-          npm ci --prefix jsonforms
-          npm run build --prefix jsonforms
+          npm ci --prefix projects/jsonforms
+          npm run build --prefix projects/jsonforms
       - name: Build with Hugo
         env:
           HUGO_ENVIRONMENT: production

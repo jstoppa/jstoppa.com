@@ -1,4 +1,4 @@
 public/
 .DS_Store
-jsonforms/node_modules/
+projects/jsonforms/node_modules/
 static/jsonforms/
