@@ -38,3 +38,4 @@ Allow: /
 
 # Sitemap
 Sitemap: {{ "sitemap.xml" | absURL }}
+Sitemap: {{ "jsonforms/sitemap.xml" | absURL }}
