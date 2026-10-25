@@ -45,11 +45,16 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
+          token: ${{ secrets.SUBMODULE_PAT || github.token }}
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
+      - name: Build JSON Forms playground
+        run: |
+          npm ci --prefix jsonforms
+          npm run build --prefix jsonforms
       - name: Build with Hugo
         env:
           HUGO_ENVIRONMENT: production
