@@ -1,0 +1,9 @@
+[submodule "themes/PaperMod"]
+	path = themes/PaperMod
+	url = https://github.com/adityatelange/hugo-PaperMod.git
+[submodule "jsonforms"]
+	path = projects/jsonforms
+	url = https://github.com/jstoppa/jsonforms.git
+[submodule "projects/grokbot"]
+	path = projects/grokbot
+	url = https://github.com/jstoppa/bot_looking_for_cursor.git
